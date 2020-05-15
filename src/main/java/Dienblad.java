@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
-    private double j;
+    private double prijs;
     private Artikel Artikel;
 
     /**
@@ -42,11 +42,11 @@ public class Dienblad {
      * @return De totaalprijs
      */
     public double getTotaalPrijs() {
-        j = 0;
+        prijs = 0;
         for (Artikel artikelen : artikelen){
-            j += Artikel.getPrijs();
+            prijs += Artikel.getPrijs();
         }
-        return j;
+        return prijs;
     }
 }
 
