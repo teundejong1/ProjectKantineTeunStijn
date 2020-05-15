@@ -11,4 +11,20 @@ public class Artikel {
         this.prijs = prijs;
 
     }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public float getPrijs() {
+        return prijs;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public void setPrijs(float prijs) {
+        this.prijs = prijs;
+    }
 }
