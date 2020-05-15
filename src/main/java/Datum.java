@@ -53,7 +53,7 @@ public class Datum {
 	}
 
 	/**
-	 * Getter voor Sting weergave van datum
+	 * Getter voor Sting weergave van datum.
 	 *
 	 * @return Geboortedatum
 	 */
