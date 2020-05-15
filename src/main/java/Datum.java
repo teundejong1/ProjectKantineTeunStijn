@@ -3,7 +3,7 @@ public class Datum {
 	private int dag;
 	private int maand;
 	private int jaar;
-	private int dagenInMaand;
+	private int dagenInMaand = 0;
 
 	/**
 	 * Constructor
@@ -12,14 +12,13 @@ public class Datum {
 		this.dag = dag;
 		this.maand = maand;
 		this.jaar = jaar;
-		this.dagenInMaand = 0;
+		bestaatDatum();
 	}
 
 	public Datum() {
 		this.dag = 0;
 		this.maand = 0;
 		this.jaar = 0;
-		this.dagenInMaand = 0;
 	}
 
 	public void setDag(int dag) {
@@ -87,7 +86,7 @@ public class Datum {
 			case 8:
 			case 10:
 			case 12:
-				dagenInMaand = 31;
+				dagenInMaand =31;
 				break;
 			case 4:
 			case 6:              //maanden met 30 dagen
@@ -104,7 +103,9 @@ public class Datum {
 					dagenInMaand = 28;
 					break;
 				}
-
+			if (getDag() > dagenInMaand){
+				dag = 0;
+			}
 		}
 
 	}
