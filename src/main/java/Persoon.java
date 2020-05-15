@@ -23,8 +23,10 @@ public class Persoon {
         this.bsn = bsn;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-        this.geboortedatum = geboortedatum;// jouw code STIJN
+
+
         this.geslacht = 'o';
+
 
     }
 
@@ -85,5 +87,9 @@ public class Persoon {
     public String getGeboortedatum() {
         geboortedatum = Datum.getDatumAsString();
         return geboortedatum;
+    }
+
+    public String toString(){//overriding the toString() method
+        return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;
     }
 }

@@ -27,4 +27,9 @@ public class Artikel {
     public void setPrijs(float prijs) {
         this.prijs = prijs;
     }
+
+    public String toString(){//overriding the toString() method
+        return naam+" "+prijs;
+    }
+
 }
