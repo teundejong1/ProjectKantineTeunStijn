@@ -1,8 +1,8 @@
 public class Datum {
 
-	private int dag;
-	private int maand;
-	private int jaar;
+	private static int dag;
+	private static int maand;
+	private static int jaar;
 	private int dagenInMaand = 0;
 
 	/**
@@ -56,9 +56,9 @@ public class Datum {
 	 *
 	 * @return Geboortedatum
 	 */
-	public String getDatumAsString() {
-		// TODO
-		return "";
+	public static String getDatumAsString() {
+		String strDatum = String.valueOf(dag) + "-"+ String.valueOf(maand) + "-" + String.valueOf(jaar);
+		return strDatum;
 	}
 
 	public void bestaatDatum() {

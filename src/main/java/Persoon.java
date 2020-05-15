@@ -18,6 +18,16 @@ public class Persoon {
             System.out.println(geslacht + "Dit is geen geldig geslacht");
         }
     }
+
+    public Persoon(){
+        this.bsn = bsn;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam;
+        this.geboortedatum = geboortedatum;// jouw code STIJN
+        this.geslacht = 'o';
+
+    }
+
     public String getGeslacht () {
 
         if (checkGeslacht(geslacht)) {
@@ -36,7 +46,7 @@ public class Persoon {
         return " ";
     }
 
-    public void setbsn ( int bsn){
+    public void setBsn ( int bsn){
         this.bsn = bsn;
     }
 
@@ -52,7 +62,7 @@ public class Persoon {
         this.geboortedatum = geboortedatum;
     }
 
-    public void setGeslach ( char geslacht){
+    public void setGeslacht ( char geslacht){
         this.geslacht = geslacht;
 
     }
@@ -73,6 +83,7 @@ public class Persoon {
     }
 
     public String getGeboortedatum() {
+        geboortedatum = Datum.getDatumAsString();
         return geboortedatum;
     }
 }
