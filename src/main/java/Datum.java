@@ -58,6 +58,26 @@ public class Datum {
 			// TODO
 			return "";
 		}
+	public void bestaatDatum() {
+		/** Controleerd of het dagnummer groter of gelijk aan 1 is  */
+		if (!(getDag() >= 1)) {
+			dag = 0;
+		}
 
+		/** Controleerd of de maand binnen 1 en 12 valt */
+		if(getMaand()<1 || getMaand()>12){
+		maand = 0;
+		}
+
+		/** Controleerd of het jaar getal binnen 1900 en 2100 is */
+		if(getJaar()<1900 || getJaar()>2100){
+			jaar = 0;
+
+		}
+
+
+
+
+	}
 
 	}
