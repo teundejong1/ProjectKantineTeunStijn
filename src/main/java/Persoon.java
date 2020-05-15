@@ -85,7 +85,7 @@ public class Persoon {
     }
 
     public String getGeboortedatum() {
-        if(Datum.bestaatDatum()= 1) {
+        if(Datum.getDatumAsString().equals("0-0-0")) {
             geboortedatum = Datum.getDatumAsString();
         }else
          geboortedatum = "onbekend";
