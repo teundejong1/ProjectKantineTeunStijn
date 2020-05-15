@@ -20,10 +20,10 @@ public class KassaRij {
     }
 
     /**
-     * Indien er een rij bestaat, de eerste klant uit de rij verwijderen en retourneren. Als er
+     * Indien er een rij bestaat, de eerste Klant uit de rij verwijderen en retourneren. Als er
      * niemand in de rij staat geeft deze null terug.
      *
-     * @return Eerste klant in de rij of null
+     * @return Eerste Klant in de rij of null
      */
     public Dienblad eerstePersoonInRij() {
         // method body omitted

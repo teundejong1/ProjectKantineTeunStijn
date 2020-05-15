@@ -23,8 +23,7 @@ public class Persoon {
         this.bsn = bsn;
         this.voornaam = voornaam;
         this.achternaam = achternaam;
-
-
+        this.geboortedatum = "0-0-0";
         this.geslacht = 'o';
 
 
