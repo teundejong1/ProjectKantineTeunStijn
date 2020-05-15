@@ -30,7 +30,7 @@ public class KantineSimulatie {
                 // kantine.(...);
             }
 
-            // verwerk rij voor de kassa Werkt dit
+            // verwerk rij voor de kassa
 
             // toon dagtotalen (artikelen en geld in kassa)
 
