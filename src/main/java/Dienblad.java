@@ -6,7 +6,7 @@ public class Dienblad {
     private ArrayList<Artikel> artikelen;
     private double prijs;
     private Artikel Artikel;
-
+    private Persoon klant;
     /**
      * Constructor
      */
@@ -14,6 +14,9 @@ public class Dienblad {
         this.artikelen = artikelen;
     }
 
+    public Dienblad(Persoon klant) {
+        this.klant = klant;
+    }
     /**
      * Methode om artikel aan dienblad toe te voegen
      *

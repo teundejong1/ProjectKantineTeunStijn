@@ -1,6 +1,6 @@
 public class Artikel {
     private String naam;
-    private float prijs;
+    private double prijs;
 
     public Artikel(String naam, float prijs) {
         this.naam = naam;
@@ -16,7 +16,7 @@ public class Artikel {
         return naam;
     }
 
-    public float getPrijs() {
+    public double getPrijs() {
         return prijs;
     }
 
