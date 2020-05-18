@@ -1,12 +1,20 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Kassa {
-
+    private ArrayList<Artikel> artikelen;
+    private double prijs;
+    private Artikel Artikel;
+    private int teller =0;
+    private double hoeveelheidKassa =0;
+    private KassaRij KassaRij;
     /**
      * Constructor
      */
-    public Kassa(KassaRij kassarij) {
-        // method body omitted
+
+    public Kassa(KassaRij kassaRij) {
+
+        this.KassaRij=kassaRij;
     }
 
     /**
@@ -17,6 +25,9 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
+        aantalArtikelen();
+        hoeveelheidGeldInKassa();
+        resetKassa();
         // method body omitted
     }
 
@@ -27,17 +38,21 @@ public class Kassa {
      * @return aantal artikelen
      */
     public int aantalArtikelen() {
-        // method body omitted
+                for (Artikel artikelen : artikelen)
+            teller++;
+        return teller;
     }
 
     /**
-     * Geeft het totaalbedrag van alle artikelen die de kass zijn gepasseerd, vanaf het moment dat
+     * Geeft het totaalbedrag van alle artikelen die de kassa zijn gepasseerd, vanaf het moment dat
      * de methode resetKassa is aangeroepen.
      *
      * @return hoeveelheid geld in de kassa
      */
     public double hoeveelheidGeldInKassa() {
-        // method body omitted
+               for (Artikel artikelen : artikelen)
+            hoeveelheidKassa += Artikel.getPrijs();
+        return hoeveelheidKassa;
     }
 
     /**
@@ -45,6 +60,7 @@ public class Kassa {
      * kassa.
      */
     public void resetKassa() {
-        // method body omitted
+        hoeveelheidKassa = 0;
+        teller = 0;
     }
 }

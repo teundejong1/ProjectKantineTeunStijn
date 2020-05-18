@@ -26,10 +26,11 @@ public class KassaRij {
     public Dienblad eerstePersoonInRij() {
         if(erIsEenRij()==false){
             System.out.println("er is geen rij");
+            return null;
         }else{
             klantRij.get(0);
             klantRij.remove(0);
-
+            return klantRij.get(0); //Deze checken
         }
     }
 

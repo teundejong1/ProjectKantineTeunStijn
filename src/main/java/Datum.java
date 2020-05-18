@@ -13,7 +13,7 @@ public class Datum {
 		this.dag = dag;
 		this.maand = maand;
 		this.jaar = jaar;
-		//bestaatDatum();
+		bestaatDatum(dag, maand, jaar);
 	}
 
 	public Datum() {
