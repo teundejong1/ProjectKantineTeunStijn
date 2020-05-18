@@ -8,23 +8,23 @@ public class Persoon {
     private char geslacht;
 
     public Persoon(int bsn, String voornaam, String achternaam, String geboortedatum, char geslacht) {
-        this.bsn = bsn;
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
-        this.geboortedatum = geboortedatum;
+        setBsn(bsn);
+        setVoornaam(voornaam);
+        setAchternaam(achternaam);
+        setGeboortedatum(geboortedatum);
         if (checkGeslacht(geslacht)) {
-            this.geslacht = geslacht;
+            setGeslacht(geslacht);
         } else {
             System.out.println(geslacht + "Dit is geen geldig geslacht");
         }
     }
 
     public Persoon(){
-        this.bsn = bsn;
-        this.voornaam = voornaam;
-        this.achternaam = achternaam;
-        this.geboortedatum = "0-0-0";
-        this.geslacht = 'o';
+        bsn = 0;
+        voornaam = "voornaam";
+        achternaam = "achternaam";
+        geboortedatum = "0-0-0";
+        geslacht = 'o';
 
 
     }
@@ -64,11 +64,26 @@ public class Persoon {
     }
 
     public void setGeslacht ( char geslacht){
+        checkGeslacht(geslacht);
         this.geslacht = geslacht;
-
     }
+
     private boolean checkGeslacht ( char geslacht){
-        return geslacht == 'M' || geslacht == 'm' || geslacht == 'V' || geslacht == 'v';
+         if (geslacht == 'M') {
+             return true;
+         }
+         else if (geslacht == 'm') {
+             return true;
+         }
+         else if (geslacht == 'V') {
+             return true;
+         }
+         else if (geslacht == 'v') {
+             return true;
+         }
+         else {
+            return false;
+         }
     }
 
     public int getBsn() {

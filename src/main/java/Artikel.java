@@ -2,13 +2,13 @@ public class Artikel {
     private String naam;
     private double prijs;
 
-    public Artikel(String naam, float prijs) {
-        this.naam = naam;
-        this.prijs = prijs;
+    public Artikel(String naam, double prijs) {
+        setNaam(naam);
+        setPrijs(prijs);
 }
     public Artikel() {
-        this.naam = naam;
-        this.prijs = prijs;
+        naam = "Nader te bepalen naam";
+        prijs = 0;
 
     }
 
@@ -24,7 +24,7 @@ public class Artikel {
         this.naam = naam;
     }
 
-    public void setPrijs(float prijs) {
+    public void setPrijs(double prijs) {
         this.prijs = prijs;
     }
 

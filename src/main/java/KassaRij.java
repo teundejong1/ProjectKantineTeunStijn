@@ -24,13 +24,13 @@ public class KassaRij {
      * @return Eerste Klant in de rij of null
      */
     public Dienblad eerstePersoonInRij() {
-        if(erIsEenRij()==false){
+                if(!erIsEenRij()){
             System.out.println("er is geen rij");
             return null;
         }else{
-            klantRij.get(0);
+            Dienblad voorstePersoon = klantRij.get(0);
             klantRij.remove(0);
-            return klantRij.get(0); //Deze checken
+            return voorstePersoon;
         }
     }
 

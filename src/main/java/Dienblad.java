@@ -6,7 +6,7 @@ public class Dienblad {
     private ArrayList<Artikel> artikelen;
     private double prijs;
     private Artikel Artikel;
-    private Persoon klant;
+    public Persoon klant;
     /**
      * Constructor
      */
@@ -17,6 +17,15 @@ public class Dienblad {
     public Dienblad(Persoon klant) {
         this.klant = klant;
     }
+
+    public Persoon getKlant() {
+        return klant;
+    }
+
+    public void setKlant(Persoon klant) {
+        this.klant = klant;
+    }
+
     /**
      * Methode om artikel aan dienblad toe te voegen
      *

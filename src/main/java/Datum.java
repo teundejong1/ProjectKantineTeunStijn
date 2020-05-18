@@ -4,22 +4,22 @@ public class Datum {
 	private static int maand;
 	private static int jaar;
 	private static int dagenInMaand;
-	//private int dagenInMaand = 0;
+
 
 	/**
 	 * Constructor
 	 */
 	public Datum(int dag, int maand, int jaar) {
-		this.dag = dag;
-		this.maand = maand;
-		this.jaar = jaar;
+		setDag(dag);
+		setMaand(maand);
+		setJaar(jaar);
 		bestaatDatum(dag, maand, jaar);
 	}
 
 	public Datum() {
-		this.dag = 0;
-		this.maand = 0;
-		this.jaar = 0;
+		dag = 0;
+		maand = 0;
+		jaar = 0;
 	}
 
 	public void setDag(int dag) {
@@ -46,12 +46,12 @@ public class Datum {
 		return jaar;
 	}
 
-
 	public static boolean bestaatDatum(int dag, int maand, int jaar) {
-		if(!(dag==0 && maand==0 && jaar==0)) {
-			return true;
-		}else
+		controleDatum();
+		if(dag==0 || maand==0 || jaar==0) {
 			return false;
+		}else
+			return true;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class Datum {
 
 	public static void controleDatum() {
 		/* Controleerd of het dagnummer groter of gelijk aan 1 is. */
-		if (!(getDag() >= 1)) {
+		if (getDag() < 1 || (getDag() > dagenInMaand))  {
 			dag = 0;
 		}
 
