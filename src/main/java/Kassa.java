@@ -18,14 +18,13 @@ public class Kassa {
      * Vraag het aantal artikelen en de totaalprijs op. Tel deze gegevens op bij de controletotalen
      * die voor de kassa worden bijgehouden. De implementatie wordt later vervangen door een echte
      * betaling door de persoon.
-     *
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad klant) {
-        double totalPrice = klant.getTotaalPrijs();
-        int amountOfItems = klant.getAantalArtikelen();
-        this.hoeveelheidKassa += totalPrice;
-        this.gepasseerdeArtikelen += amountOfItems;
+        double prijsTotaal = klant.getTotaalPrijs();
+        int hoeveelheidArtikelen = klant.getAantalArtikelen();
+        this.hoeveelheidKassa += prijsTotaal;
+        this.gepasseerdeArtikelen += hoeveelheidArtikelen;
     }
 
     /**

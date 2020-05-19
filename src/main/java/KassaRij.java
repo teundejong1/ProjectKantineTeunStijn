@@ -42,7 +42,6 @@ public class KassaRij {
     public boolean erIsEenRij() {
         if(klantRij.size()==0){
             return false;
-
         }else
             return true;
     }

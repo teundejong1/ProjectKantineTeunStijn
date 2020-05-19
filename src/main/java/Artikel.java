@@ -9,7 +9,6 @@ public class Artikel {
     public Artikel() {
         naam = "Nader te bepalen naam";
         prijs = 0;
-
     }
 
     public String getNaam() {
