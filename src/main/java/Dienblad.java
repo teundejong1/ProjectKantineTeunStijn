@@ -42,7 +42,7 @@ public class Dienblad {
      */
     public int getAantalArtikelen() {
         int i = 0;
-        for (Artikel artikelen : artikelen){
+        for (Artikel value : artikelen){
             i++;
         }
         return i;
@@ -55,8 +55,8 @@ public class Dienblad {
      */
     public double getTotaalPrijs() {
         prijs = 0;
-        for (Artikel artikelen : artikelen){
-            prijs += Artikel.getPrijs();
+        for (Artikel value : artikelen){ // artikelen in value veranderd,ook hierboven
+            prijs += value.getPrijs(); //Hier hetzelfde
         }
         return prijs;
     }
