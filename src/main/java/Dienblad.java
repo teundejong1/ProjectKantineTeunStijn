@@ -21,14 +21,25 @@ public class Dienblad {
         this.artikelen = artikelen;
     }
 
+    /**
+     * Constructor van de objecten van klasse Dienblad.
+     */
+
     public Dienblad(Persoon klant) {
         this.klant = klant;
     }
 
+
+    /**
+     * Getter voor klant.
+     */
     public Persoon getKlant() {
         return klant;
     }
-
+    /**
+     * Setter voor klant.
+     * @param klant de klant.
+     */
     public void setKlant(Persoon klant) {
         this.klant = klant;
     }
