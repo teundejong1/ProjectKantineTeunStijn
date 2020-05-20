@@ -1,13 +1,18 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-
+/**
+ * class Kassa - Deze klasse is verantwoordelijk voor de kassa.
+ *
+ * @author Teun de Jong en Stijn Wolthuis
+ * @version 19/05/2020
+ */
 public class Kassa {
     private KassaRij kassaRij;
     private double hoeveelheidKassa;
     private int gepasseerdeArtikelen;
 
      /**
-     * Constructor
+     * Constructor voor de klasse Kassa
      */
 
     public Kassa(KassaRij kassarij) {

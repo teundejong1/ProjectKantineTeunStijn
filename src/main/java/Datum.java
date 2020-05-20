@@ -1,3 +1,9 @@
+/**
+ * class Datum - Deze klasse is voor de controle en zetten van de tijd(datum).
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 19/05/2020.
+ */
+
 public class Datum {
 
 	private static int dag;
@@ -7,7 +13,10 @@ public class Datum {
 
 
 	/**
-	 * Constructor
+	 * Constructor van de klasse Datum.
+	 * @param dag de dag.
+	 * @param maand de maand.
+	 * @param jaar het jaar.
 	 */
 	public Datum(int dag, int maand, int jaar) {
 		setDag(dag);
@@ -15,37 +24,63 @@ public class Datum {
 		setJaar(jaar);
 		bestaatDatum(dag, maand, jaar);
 	}
-
+	/**
+	 * parameter-loze constructor van de klasse Datum.
+	 */
 	public Datum() {
 		dag = 0;
 		maand = 0;
 		jaar = 0;
 	}
-
+	/**
+	 * Setter voor de dag.
+	 * @param dag de dag.
+	 */
 	public void setDag(int dag) {
 		this.dag = dag;
 	}
-
+	/**
+	 * Setter voor de maand.
+	 * @param maand	de maand
+	 */
 	public void setMaand(int maand) {
 		this.maand = maand;
 	}
-
+	/**
+	 * Setter voor het jaar.
+	 * @param jaar het jaar.
+	 */
 	public void setJaar(int jaar) {
 		this.jaar = jaar;
 	}
-
+	/**
+	 * Getter voor de dag.
+	 * @return de dag.
+	 */
 	public static int getDag() {
 		return dag;
 	}
-
+	/**
+	 * Getter voor de maand.
+	 * @return de maand.
+	 */
 	public static int getMaand() {
 		return maand;
 	}
-
+	/**
+	 * Getter voor het jaar.
+	 * @return het jaar.
+	 */
 	public static int getJaar() {
 		return jaar;
 	}
-
+	/**
+	 * Controle of de datum bestaat.
+	 * @param dag de dag.
+	 * @param maand	de maand.
+	 * @param jaar	het jaar.
+	 * @return of de datum valide is.
+	 */
 	public static boolean bestaatDatum(int dag, int maand, int jaar) {
 		controleDatum();
 		if(dag==0 || maand==0 || jaar==0) {
@@ -57,13 +92,15 @@ public class Datum {
 	/**
 	 * Getter voor Sting weergave van datum.
 	 *
-	 * @return Geboortedatum
+	 * @return Geboortedatum.
 	 */
 	public static String getDatumAsString() {
 		String strDatum = String.valueOf(dag) + "-"+ String.valueOf(maand) + "-" + String.valueOf(jaar);
 		return strDatum;
 	}
-
+	/**
+	 * Controleerd of de datum valide is.
+	 */
 	public static void controleDatum() {
 		/* Controleerd of het dagnummer groter of gelijk aan 1 is. */
 		if (getDag() < 1 || (getDag() > dagenInMaand))  {

@@ -1,14 +1,21 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
+/**
+ * class Dienblad - Deze klasse houdt alle artikelen bij van een klant die op het dienblad staan.
+ *
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 19/05/2020
+ */
 
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
     private double prijs;
     private Artikel Artikel;
     public Persoon klant;
+
     /**
-     * Constructor
+     * Constructor van de objecten van klasse Dienblad
      */
     public Dienblad(ArrayList<Artikel> artikelen) {
         this.artikelen = artikelen;

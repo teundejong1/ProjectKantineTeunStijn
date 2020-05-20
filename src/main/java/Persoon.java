@@ -1,4 +1,10 @@
 import java.util.*;
+/**
+ * class Persoon - Deze klasse houdt de gegevens bij van een persoon.
+ *
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 19/05/2020.
+ */
 
 public class Persoon {
     private int bsn;
@@ -6,6 +12,10 @@ public class Persoon {
     private String achternaam;
     private String geboortedatum;
     private char geslacht;
+
+    /**
+     * Constructor van de klasse Persoon.
+     */
 
     public Persoon(int bsn, String voornaam, String achternaam, String geboortedatum, char geslacht) {
         setBsn(bsn);
@@ -18,7 +28,9 @@ public class Persoon {
             System.out.println(geslacht + "Dit is geen geldig geslacht");
         }
     }
-
+    /**
+     * parameter-loze constructor van de klasse Datum.
+     */
     public Persoon(){
         bsn = 0;
         voornaam = "voornaam";
@@ -28,6 +40,10 @@ public class Persoon {
 
 
     }
+    /**
+     * Getter voor het geslacht van de persoon.
+     * @return geslacht van persoon.
+     */
 
     public String getGeslacht () {
 
@@ -67,7 +83,11 @@ public class Persoon {
         checkGeslacht(geslacht);
         this.geslacht = geslacht;
     }
-
+    /**
+     * Controleerd of het geslacht bestaat.
+     * @param geslacht geslacht van persoon.
+     * @return of het geslacht geldig is.
+     */
     private boolean checkGeslacht ( char geslacht){
          if (geslacht == 'M') {
              return true;
@@ -85,19 +105,31 @@ public class Persoon {
             return false;
          }
     }
-
+    /**
+     * Getter voor bsn van de persoon.
+     * @return bsn nummer.
+     */
     public int getBsn() {
         return bsn;
     }
-
+    /**
+     * Getter voor de voornaam van de persoon.
+     * @return voornaam persoon.
+     */
     public String getVoornaam() {
         return voornaam;
     }
-
+    /**
+     * Getter voor de achternaam van de persoon.
+     * @return achternaam persoon.
+     */
     public String getAchternaam() {
         return achternaam;
     }
-
+    /**
+     * Getter voor geboortedatum van de persoon, met controle of datum bekend is.
+     * @return geboortedatum persoon.
+     */
     public String getGeboortedatum() {
         if(!Datum.getDatumAsString().equals("0-0-0")) {
             geboortedatum = Datum.getDatumAsString();
@@ -105,7 +137,10 @@ public class Persoon {
          geboortedatum = "onbekend";
         return geboortedatum;
     }
-
+    /**
+     * omzetten van alle gegevens van een persoon in een string.
+     * @return alle gegevens van persoon.
+     */
     public String toString(){//overriding the toString() method
         return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;
     }

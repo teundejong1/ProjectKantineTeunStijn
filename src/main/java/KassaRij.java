@@ -1,8 +1,16 @@
 import java.util.*;
-
+/**
+ * class KassaRij - Deze klasse houdt de rij bij van de kassa.
+ *
+ * @author Teun de Jong en Stijn Wolthuis
+ * @version 19/05/2020
+ */
 public class KassaRij {
     private ArrayList<Dienblad> klantRij;
 
+    /**
+     * Constructor voor de klasse KassaRij
+     */
 
     public KassaRij() {
         ArrayList<Dienblad> klantRij = new ArrayList<Dienblad>();
@@ -24,7 +32,7 @@ public class KassaRij {
      * @return Eerste Klant in de rij of null
      */
     public Dienblad eerstePersoonInRij() {
-                if(!erIsEenRij()){
+        if(!erIsEenRij()){
             System.out.println("er is geen rij");
             return null;
         }else{
