@@ -10,7 +10,7 @@ public class Persoon {
     private int bsn;
     private String voornaam;
     private String achternaam;
-    private String geboortedatum;
+    private String geboortedatum; //Datum
     private char geslacht;
 
     /**

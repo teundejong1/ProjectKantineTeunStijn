@@ -11,7 +11,6 @@ import java.util.Stack;
 public class Dienblad {
     private ArrayList<Artikel> artikelen;
     private double prijs;
-    private Artikel Artikel;
     public Persoon klant;
 
     /**
@@ -28,7 +27,6 @@ public class Dienblad {
     public Dienblad(Persoon klant) {
         this.klant = klant;
     }
-
 
     /**
      * Getter voor klant.
@@ -63,7 +61,7 @@ public class Dienblad {
         for (Artikel waarde : artikelen){
             i++;
         }
-        return i;
+        return i; // size gebruiken
     }
 
     /**

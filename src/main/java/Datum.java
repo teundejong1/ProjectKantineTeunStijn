@@ -9,7 +9,7 @@ public class Datum {
 	private static int dag;
 	private static int maand;
 	private static int jaar;
-	private static int dagenInMaand;
+	private static int dagenInMaand; //statics weghalen
 
 
 	/**
@@ -104,7 +104,7 @@ public class Datum {
 	public static void controleDatum() {
 		/* Controleerd of het dagnummer groter of gelijk aan 1 is. */
 		if (getDag() < 1 || (getDag() > dagenInMaand))  {
-			dag = 0;
+			dag = 0; //dag kan ipv getdag. Als 1 niet klopt moeten alle 3 op 0.
 		}
 
 		/* Controleerd of de maand binnen 1 en 12 valt. */

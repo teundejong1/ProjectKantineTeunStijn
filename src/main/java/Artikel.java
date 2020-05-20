@@ -58,5 +58,4 @@ public class Artikel {
     public String toString(){//overriding the toString() method
         return naam+" "+prijs;
     }
-
 }
