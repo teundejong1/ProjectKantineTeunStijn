@@ -62,23 +62,38 @@ public class Persoon {
 
         return " ";
     }
-
+    /**
+     * Setter voor bsn nummer.
+     * @param bsn bsn nummer.
+     */
     public void setBsn ( int bsn){
         this.bsn = bsn;
     }
-
+    /**
+     * Setter voor voornaam.
+     * @param voornaam voornaam van persoon.
+     */
     public void setVoornaam (String voornaam){
         this.voornaam = voornaam;
     }
-
+    /**
+     * Setter voor achternaam.
+     * @param achternaam achternaam van persoon.
+     */
     public void setAchternaam (String achternaam){
         this.achternaam = achternaam;
     }
-
+    /**
+     * Setter voor geboortedatum.
+     * @param geboortedatum geboortedatum van persoon.
+     */
     public void setGeboortedatum (String geboortedatum){
         this.geboortedatum = geboortedatum;
     }
-
+    /**
+     * Setter voor het geslacht.
+     * @param geslacht geslacht van persoon
+     */
     public void setGeslacht ( char geslacht){
         checkGeslacht(geslacht);
         this.geslacht = geslacht;

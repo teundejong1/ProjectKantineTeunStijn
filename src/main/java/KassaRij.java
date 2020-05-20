@@ -45,7 +45,7 @@ public class KassaRij {
     /**
      * Methode kijkt of er personen in de rij staan.
      *
-     * @return Of er wel of geen rij bestaat
+     * @return Of er wel of geen rij bestaat.
      */
     public boolean erIsEenRij() {
         if(klantRij.size()==0){

@@ -3,8 +3,8 @@ import java.util.Iterator;
 /**
  * class Kassa - Deze klasse is verantwoordelijk voor de kassa.
  *
- * @author Teun de Jong en Stijn Wolthuis
- * @version 19/05/2020
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 19/05/2020.
  */
 public class Kassa {
     private KassaRij kassaRij;
@@ -12,7 +12,7 @@ public class Kassa {
     private int gepasseerdeArtikelen;
 
      /**
-     * Constructor voor de klasse Kassa
+     * Constructor voor de klasse Kassa.
      */
 
     public Kassa(KassaRij kassarij) {
@@ -23,7 +23,7 @@ public class Kassa {
      * Vraag het aantal artikelen en de totaalprijs op. Tel deze gegevens op bij de controletotalen
      * die voor de kassa worden bijgehouden. De implementatie wordt later vervangen door een echte
      * betaling door de persoon.
-     * @param klant die moet afrekenen
+     * @param klant die moet afrekenen.
      */
     public void rekenAf(Dienblad klant) {
         double prijsTotaal = klant.getTotaalPrijs();
@@ -36,7 +36,7 @@ public class Kassa {
      * Geeft het aantal artikelen dat de kassa heeft gepasseerd, vanaf het moment dat de methode
      * resetWaarden is aangeroepen.
      *
-     * @return aantal artikelen
+     * @return aantal artikelen.
      */
     public int aantalArtikelen() {
         return gepasseerdeArtikelen;
@@ -46,7 +46,7 @@ public class Kassa {
      * Geeft het totaalbedrag van alle artikelen die de kassa zijn gepasseerd, vanaf het moment dat
      * de methode resetKassa is aangeroepen.
      *
-     * @return hoeveelheid geld in de kassa
+     * @return hoeveelheid geld in de kassa.
      */
 
     public double hoeveelheidGeldInKassa() {
