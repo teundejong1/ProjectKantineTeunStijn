@@ -35,7 +35,7 @@ public class Persoon {
         bsn = 0;
         voornaam = "voornaam";
         achternaam = "achternaam";
-        geboortedatum = ( 0, 0, 0 ); //Dit werkt nog niet, statics staan er nog, misschien daarom?
+        geboortedatum = new Datum(); //Dit werkt nog niet, statics staan er nog, misschien daarom?
         geslacht = 'o';
 
 
@@ -149,7 +149,7 @@ public class Persoon {
         if(!Datum.getDatumAsString().equals("0-0-0")) {
             geboortedatum = this.geboortedatum;
         }else
-         geboortedatum = ;
+         geboortedatum = new Datum();
         return geboortedatum;
     }
     /**
