@@ -6,9 +6,9 @@ public class Administratie {
      * @param aantal
      * @return het gemiddelde
      */
-    public double berekenGemiddeldAantal(int[] aantal) {
+   // public double berekenGemiddeldAantal(int[] aantal) {
         // method body omitted
-    }
+ //   }
 
     /**
      * Deze methode berekent van de double array omzet de gemiddelde waarde
@@ -16,9 +16,9 @@ public class Administratie {
      * @param omzet
      * @return het gemiddelde
      */
-    public double berekenGemiddeldeOmzet(double[] omzet) {
+  //  public double berekenGemiddeldeOmzet(double[] omzet) {
         // method body omitted
-    }
+  //  }
 
     /**
      * Methode om dagomzet uit te rekenen
@@ -27,7 +27,7 @@ public class Administratie {
      * @return array (7 elementen) met dagomzetten
      */
 
-    public static double[] berekenDagOmzet(double[] omzet) {
+    /*public static double[] berekenDagOmzet(double[] omzet) {
         double[] temp = new double[7];
         for(int i = 0; i < 7; i++) {
 
@@ -40,5 +40,5 @@ public class Administratie {
             }
         }
         return temp;
-    }
+    } */
 }

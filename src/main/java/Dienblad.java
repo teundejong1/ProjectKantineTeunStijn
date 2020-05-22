@@ -48,7 +48,8 @@ public class Dienblad {
      * @param artikel naam van artikel.
      */
     public void voegToe(Artikel artikel) {
-        artikelen.add(artikel);
+            artikelen.add(artikel);
+
     }
 
     /**
