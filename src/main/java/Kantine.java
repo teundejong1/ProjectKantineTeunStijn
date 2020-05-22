@@ -17,10 +17,14 @@ public class Kantine {
      * voor de kassa.
      */
     public void loopPakSluitAan() {
-        new Artikel("Cola", 2.50);
-        new Artikel("Hamburger", 3.00);
-        new Persoon (12345, "Frank", "de Boer", 1, 'M' ); //zelfde probleem
-        new Dienblad();
+        Artikel cola = new Artikel("Cola", 2.50);
+        Artikel hamburger = new Artikel("Hamburger", 3.00);
+        Datum datumHenk = new Datum(1, 2, 3);
+        Persoon henk = new Persoon (12345, "Frank", "de Boer", datumHenk, 'M' );
+        Dienblad dienbladHenk = new Dienblad(henk);
+        dienbladHenk.voegToe(cola);
+        dienbladHenk.voegToe(hamburger);
+        kassarij.sluitAchteraan(dienbladHenk);
     }
 
     /**
@@ -28,7 +32,7 @@ public class Kantine {
      */
     public void verwerkRijVoorKassa() {
         while (kassarij.erIsEenRij()) {
-            // omitted
+            kassarij.eerstePersoonInRij(); //eventueel afreken erbij
         }
     }
 
@@ -38,7 +42,7 @@ public class Kantine {
      * @return hoeveelheid geld in kassa
      */
     public double hoeveelheidGeldInKassa() {
-        kassa.hoeveelheidGeldInKassa();
+        return kassa.hoeveelheidGeldInKassa();
     }
 
     /**
@@ -47,7 +51,7 @@ public class Kantine {
      * @return het aantal gepasseerde artikelen
      */
     public int aantalArtikelen() {
-        kassa.aantalArtikelen();
+        return kassa.aantalArtikelen();
     }
 
     /**

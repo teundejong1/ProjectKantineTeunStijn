@@ -146,11 +146,10 @@ public class Persoon {
      * @return geboortedatum persoon.
      */
     public String getGeboortedatum() {
-        if(!Datum.getDatumAsString().equals("0-0-0")) {
-            geboortedatum = this.geboortedatum;
-        }else
-         geboortedatum = new Datum();
-        return geboortedatum;
+        if(geboortedatum.getDatumAsString().equals("0-0-0")){
+            return "Onbekend";
+        }   else
+         return geboortedatum.getDatumAsString();
     }
     /**
      * omzetten van alle gegevens van een persoon in een string.

@@ -27,7 +27,7 @@ public class Kassa {
      */
     public void rekenAf(Dienblad klant) {
         this.hoeveelheidKassa += klant.getTotaalPrijs();
-        this.gepasseerdeArtikelen += klant.getAantalArtikelen(); // 2 regels weggehaald
+        this.gepasseerdeArtikelen += klant.getAantalArtikelen();
     }
 
     /**
