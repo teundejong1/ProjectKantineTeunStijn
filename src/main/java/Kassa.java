@@ -26,10 +26,8 @@ public class Kassa {
      * @param klant die moet afrekenen.
      */
     public void rekenAf(Dienblad klant) {
-        double prijsTotaal = klant.getTotaalPrijs();
-        int hoeveelheidArtikelen = klant.getAantalArtikelen(); //2 regels kunnen weg
-        this.hoeveelheidKassa += prijsTotaal;
-        this.gepasseerdeArtikelen += hoeveelheidArtikelen;
+        this.hoeveelheidKassa += klant.getTotaalPrijs();
+        this.gepasseerdeArtikelen += klant.getAantalArtikelen(); // 2 regels weggehaald
     }
 
     /**

@@ -32,7 +32,7 @@ public class KassaRij {
      * @return Eerste Klant in de rij of null
      */
     public Dienblad eerstePersoonInRij() {
-        if(!erIsEenRij()){ //klantrijisempty
+        if(klantRij.isEmpty()){ //klantrijisempty
             System.out.println("er is geen rij");
             return null;
         }else{

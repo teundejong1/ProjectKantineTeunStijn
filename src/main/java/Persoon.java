@@ -10,14 +10,14 @@ public class Persoon {
     private int bsn;
     private String voornaam;
     private String achternaam;
-    private String geboortedatum; //Datum
+    private Datum geboortedatum;
     private char geslacht;
 
     /**
      * Constructor van de klasse Persoon.
      */
 
-    public Persoon(int bsn, String voornaam, String achternaam, String geboortedatum, char geslacht) {
+    public Persoon(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht) {
         setBsn(bsn);
         setVoornaam(voornaam);
         setAchternaam(achternaam);
@@ -35,7 +35,7 @@ public class Persoon {
         bsn = 0;
         voornaam = "voornaam";
         achternaam = "achternaam";
-        geboortedatum = "0-0-0";
+        geboortedatum = ( 0, 0, 0 ); //Dit werkt nog niet, statics staan er nog, misschien daarom?
         geslacht = 'o';
 
 
@@ -87,7 +87,7 @@ public class Persoon {
      * Setter voor geboortedatum.
      * @param geboortedatum geboortedatum van persoon.
      */
-    public void setGeboortedatum (String geboortedatum){
+    public void setGeboortedatum (Datum geboortedatum){
         this.geboortedatum = geboortedatum;
     }
     /**
@@ -147,9 +147,9 @@ public class Persoon {
      */
     public String getGeboortedatum() {
         if(!Datum.getDatumAsString().equals("0-0-0")) {
-            geboortedatum = Datum.getDatumAsString();
+            geboortedatum = this.geboortedatum;
         }else
-         geboortedatum = "onbekend";
+         geboortedatum = ;
         return geboortedatum;
     }
     /**

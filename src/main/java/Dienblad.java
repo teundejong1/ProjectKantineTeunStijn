@@ -57,11 +57,7 @@ public class Dienblad {
      * @return Het aantal artikelen.
      */
     public int getAantalArtikelen() {
-        int i = 0;
-        for (Artikel waarde : artikelen){
-            i++;
-        }
-        return i; // size gebruiken
+        return artikelen.size(); // size
     }
 
     /**
