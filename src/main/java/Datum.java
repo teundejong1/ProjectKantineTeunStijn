@@ -6,10 +6,10 @@
 
 public class Datum {
 
-	private static int dag;
-	private static int maand;
-	private static int jaar;
-	private static int dagenInMaand; //statics weghalen
+	private int dag;
+	private int maand;
+	private int jaar;
+	private int dagenInMaand;
 
 
 	/**
@@ -57,21 +57,21 @@ public class Datum {
 	 * Getter voor de dag.
 	 * @return de dag.
 	 */
-	public static int getDag() {
+	public int getDag() {
 		return dag;
 	}
 	/**
 	 * Getter voor de maand.
 	 * @return de maand.
 	 */
-	public static int getMaand() {
+	public int getMaand() {
 		return maand;
 	}
 	/**
 	 * Getter voor het jaar.
 	 * @return het jaar.
 	 */
-	public static int getJaar() {
+	public int getJaar() {
 		return jaar;
 	}
 	/**
@@ -81,7 +81,7 @@ public class Datum {
 	 * @param jaar	het jaar.
 	 * @return of de datum valide is.
 	 */
-	public static boolean bestaatDatum(int dag, int maand, int jaar) {
+	public boolean bestaatDatum(int dag, int maand, int jaar) {
 		controleDatum();
 		if(dag==0 || maand==0 || jaar==0) {
 			return false;
@@ -94,28 +94,34 @@ public class Datum {
 	 *
 	 * @return Geboortedatum.
 	 */
-	public static String getDatumAsString() {
+	public String getDatumAsString() {
 		String strDatum = String.valueOf(dag) + "-"+ String.valueOf(maand) + "-" + String.valueOf(jaar);
 		return strDatum;
 	}
 	/**
 	 * Controleerd of de datum valide is.
 	 */
-	public static void controleDatum() {
+	public void controleDatum() {
 		/* Controleerd of het dagnummer groter of gelijk aan 1 is. */
-		if (getDag() < 1 || (getDag() > dagenInMaand))  {
-			dag = 0; //dag kan ipv getdag. Als 1 niet klopt moeten alle 3 op 0.
+		if (dag < 1 || (dag > dagenInMaand))  {
+			dag = 0;
+			maand = 0;
+			jaar = 0;
+
 		}
 
 		/* Controleerd of de maand binnen 1 en 12 valt. */
-		if (getMaand() < 1 || getMaand() > 12) {
+		if (maand < 1 || maand > 12) {
+			dag = 0;
 			maand = 0;
+			jaar = 0;
 		}
 
 		/* Controleerd of het jaar getal binnen 1900 en 2100 is. */
-		if (getJaar() < 1900 || getJaar() > 2100) {
+		if (jaar< 1900 || jaar> 2100) {
+			dag = 0;
+			maand = 0;
 			jaar = 0;
-
 		}
 
 		switch (getMaand()) {
@@ -149,4 +155,6 @@ public class Datum {
 		}
 
 	}
+
+
 }

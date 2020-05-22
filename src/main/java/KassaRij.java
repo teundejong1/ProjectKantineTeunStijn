@@ -2,14 +2,14 @@ import java.util.*;
 /**
  * class KassaRij - Deze klasse houdt de rij bij van de kassa.
  *
- * @author Teun de Jong en Stijn Wolthuis
- * @version 19/05/2020
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 19/05/2020.
  */
 public class KassaRij {
     private ArrayList<Dienblad> klantRij;
 
     /**
-     * Constructor voor de klasse KassaRij
+     * Constructor voor de klasse KassaRij.
      */
 
     public KassaRij() {
@@ -17,7 +17,7 @@ public class KassaRij {
     }
 
     /**
-     * Persoon sluit achter in de rij aan
+     * Persoon sluit achter in de rij aan.
      *
      * @param klant
      */
@@ -42,15 +42,8 @@ public class KassaRij {
         }
     }
 
-    /**
-     * Methode kijkt of er personen in de rij staan.
-     *
-     * @return Of er wel of geen rij bestaat.
-     */
-    public boolean erIsEenRij() {
-        if(klantRij.size()==0){
-            return false;
-        }else
-            return true;
+
+
     }
+
 }
