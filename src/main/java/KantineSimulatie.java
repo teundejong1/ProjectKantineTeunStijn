@@ -32,10 +32,18 @@ public class KantineSimulatie {
 
             // verwerk rij voor de kassa
                 kantine.verwerkRijVoorKassa();
-            // toon dagtotalen (artikelen en geld in kassa)
-                kantine.aantalArtikelen();
-                kantine.hoeveelheidGeldInKassa();
-            // reset de kassa voor de volgende dag
+             // toon dagtotalen (artikelen en geld in kassa)
+
+                        System.out.println("#########################################");
+                        System.out.println(" ");
+                        System.out.println("Dag " + i);
+                        System.out.println("Dagtotalen:");
+                        System.out.println("------------");
+                        System.out.println();
+                        System.out.println("Artikelen: " + kantine.aantalArtikelen());
+                        System.out.println("Geld: €" + Math.round(kantine.hoeveelheidGeldInKassa() * 100.0) / 100.0);
+                        System.out.println(" ");
+                        System.out.println("#########################################");
                 kantine.resetKassa();
         }
     }
@@ -51,7 +59,7 @@ public class KantineSimulatie {
         } else {
             dagen = Integer.parseInt(args[0]);
         }
-        KantineSimulatie kantineSimulatie1 = new KantineSimulatie();
-        kantineSimulatie1.simuleer(dagen);
+        KantineSimulatie kantineSimulatie = new KantineSimulatie();
+        kantineSimulatie.simuleer(dagen);
     }
 }

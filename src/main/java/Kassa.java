@@ -17,6 +17,7 @@ public class Kassa {
 
     public Kassa(KassaRij kassarij) {
         this.kassaRij = kassarij;
+        resetKassa();
     }
 
     /**
@@ -37,7 +38,7 @@ public class Kassa {
      * @return aantal artikelen.
      */
     public int aantalArtikelen() {
-        return gepasseerdeArtikelen;
+        return this.gepasseerdeArtikelen;
     }
 
     /**
@@ -48,7 +49,7 @@ public class Kassa {
      */
 
     public double hoeveelheidGeldInKassa() {
-        return hoeveelheidKassa;
+        return this.hoeveelheidKassa;
     }
 
 
@@ -57,8 +58,8 @@ public class Kassa {
      * kassa.
      */
     public void resetKassa() {
-        hoeveelheidKassa = 0;
-        gepasseerdeArtikelen = 0;
+        this.hoeveelheidKassa = 0;
+        this.gepasseerdeArtikelen = 0;
     }
 
 }

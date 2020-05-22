@@ -17,14 +17,14 @@ public class Kantine {
      * voor de kassa.
      */
     public void loopPakSluitAan() {
+        Datum datumFrank = new Datum(1, 2, 1993);
+        Persoon Frank = new Persoon (12345, "Frank", "de Boer", datumFrank, 'M' );
+        Dienblad dienbladFrank = new Dienblad(Frank);
         Artikel cola = new Artikel("Cola", 2.50);
         Artikel hamburger = new Artikel("Hamburger", 3.00);
-        Datum datumHenk = new Datum(1, 2, 3);
-        Persoon henk = new Persoon (12345, "Frank", "de Boer", datumHenk, 'M' );
-        Dienblad dienbladHenk = new Dienblad(henk);
-        dienbladHenk.voegToe(cola);
-        dienbladHenk.voegToe(hamburger);
-        kassarij.sluitAchteraan(dienbladHenk);
+        dienbladFrank.voegToe(cola);
+        dienbladFrank.voegToe(hamburger);
+        kassarij.sluitAchteraan(dienbladFrank);
     }
 
     /**
@@ -33,7 +33,6 @@ public class Kantine {
     public void verwerkRijVoorKassa() {
         while (kassarij.erIsEenRij()) {
             kassa.rekenAf(kassarij.eerstePersoonInRij());
-            kassarij.eerstePersoonInRij();
              }
     }
 
@@ -43,7 +42,7 @@ public class Kantine {
      * @return hoeveelheid geld in kassa
      */
     public double hoeveelheidGeldInKassa() {
-        return kassa.hoeveelheidGeldInKassa();
+        return this.kassa.hoeveelheidGeldInKassa();
     }
 
     /**
@@ -52,7 +51,7 @@ public class Kantine {
      * @return het aantal gepasseerde artikelen
      */
     public int aantalArtikelen() {
-        return kassa.aantalArtikelen();
+        return this.kassa.aantalArtikelen();
     }
 
     /**
@@ -60,6 +59,6 @@ public class Kantine {
      * de kassa.
      */
     public void resetKassa() {
-        kassa.resetKassa();
+        this.kassa.resetKassa();
     }
 }

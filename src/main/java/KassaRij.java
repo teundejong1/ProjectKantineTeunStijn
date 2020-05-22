@@ -6,14 +6,14 @@ import java.util.*;
  * @version 19/05/2020.
  */
 public class KassaRij {
-    private ArrayList<Dienblad> klantRij;
+    private LinkedList<Dienblad> klantRij;
 
     /**
      * Constructor voor de klasse KassaRij.
      */
 
     public KassaRij() {
-        ArrayList<Dienblad> klantRij = new ArrayList<Dienblad>();
+        klantRij = new LinkedList<Dienblad>();
     }
 
     /**
@@ -49,10 +49,7 @@ public class KassaRij {
      * @return Of er wel of geen rij bestaat.
      */
     public boolean erIsEenRij() {
-        if (klantRij.size() == 0) {
-            return false;
-        } else
-            return true;
+        return (klantRij.size() > 0);
     }
 
 }

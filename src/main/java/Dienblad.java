@@ -9,15 +9,14 @@ import java.util.Stack;
  */
 
 public class Dienblad {
-    private ArrayList<Artikel> artikelen;
-    private double prijs;
+    private Stack<Artikel> artikelen;
     public Persoon klant;
 
     /**
      * Constructor van de objecten van klasse Dienblad.
      */
-    public Dienblad(ArrayList<Artikel> artikelen) {
-        this.artikelen = artikelen;
+    public Dienblad() {
+        artikelen = new Stack<Artikel>();
     }
 
     /**
@@ -26,13 +25,14 @@ public class Dienblad {
 
     public Dienblad(Persoon klant) {
         this.klant = klant;
+        artikelen = new Stack<Artikel>();
     }
 
     /**
      * Getter voor klant.
      */
     public Persoon getKlant() {
-        return klant;
+        return this.klant;
     }
     /**
      * Setter voor klant.
@@ -48,8 +48,7 @@ public class Dienblad {
      * @param artikel naam van artikel.
      */
     public void voegToe(Artikel artikel) {
-            artikelen.add(artikel);
-
+        artikelen.add(artikel);
     }
 
     /**
@@ -67,8 +66,8 @@ public class Dienblad {
      * @return De totaalprijs.
      */
     public double getTotaalPrijs() {
-        prijs = 0;
-        for (Artikel waarde : artikelen){
+        double prijs = 0;
+        for (Artikel waarde : this.artikelen){
             prijs += waarde.getPrijs();
         }
         return prijs;
