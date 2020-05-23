@@ -40,11 +40,11 @@ public class KantineSimulatie {
                         System.out.println("Dagtotalen:");
                         System.out.println("------------");
                         System.out.println();
-                        System.out.println("Artikelen: " + kantine.aantalArtikelen());
-                        System.out.println("Geld: €" + Math.round(kantine.hoeveelheidGeldInKassa() * 100.0) / 100.0);
+                        System.out.println("Artikelen: " + kantine.getKassa().aantalArtikelen());
+                        System.out.println("Geld: €" + Math.round(kantine.getKassa().hoeveelheidGeldInKassa() * 100.0) / 100.0);
                         System.out.println(" ");
                         System.out.println("#########################################");
-                kantine.resetKassa();
+                        kantine.getKassa().resetKassa();
         }
     }
 

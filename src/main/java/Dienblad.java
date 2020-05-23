@@ -11,6 +11,7 @@ import java.util.Stack;
 public class Dienblad {
     private Stack<Artikel> artikelen;
     public Persoon klant;
+    private Iterator<Artikel> artIt;
 
     /**
      * Constructor van de objecten van klasse Dienblad.
@@ -51,26 +52,31 @@ public class Dienblad {
         artikelen.add(artikel);
     }
 
-    /**
-     * Methode om aantal artikelen op dienblad te tellen.
-     *
-     * @return Het aantal artikelen.
-     */
-    public int getAantalArtikelen() {
-        return artikelen.size();
-    }
+    public Iterator<Artikel> artikelIterator(){
+            artIt = artikelen.iterator();
+            return this.artIt;
+          }
 
-    /**
-     * Methode om de totaalprijs van de artikelen op dienblad uit te rekenen.
-     *
-     * @return De totaalprijs.
-     */
-    public double getTotaalPrijs() {
-        double prijs = 0;
-        for (Artikel waarde : this.artikelen){
-            prijs += waarde.getPrijs();
-        }
-        return prijs;
-    }
+//    /**
+//     * Methode om aantal artikelen op dienblad te tellen.
+//     *
+//     * @return Het aantal artikelen.
+//     */
+//    public int getAantalArtikelen() {
+//        return artikelen.size();
+//    }
+//
+//    /**
+//     * Methode om de totaalprijs van de artikelen op dienblad uit te rekenen.
+//     *
+//     * @return De totaalprijs.
+//     */
+//    public double getTotaalPrijs() {
+//        double prijs = 0;
+//        for (Artikel waarde : this.artikelen){
+//            prijs += waarde.getPrijs();
+//        }
+//        return prijs;
+//    }
 }
 

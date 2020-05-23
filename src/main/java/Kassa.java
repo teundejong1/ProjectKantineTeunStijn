@@ -27,8 +27,11 @@ public class Kassa {
      * @param klant die moet afrekenen.
      */
     public void rekenAf(Dienblad klant) {
-        this.hoeveelheidKassa += klant.getTotaalPrijs();
-        this.gepasseerdeArtikelen += klant.getAantalArtikelen();
+        Iterator<Artikel> itr = klant.artikelIterator();
+        while (itr.hasNext()) {
+            this.hoeveelheidKassa += itr.next().getPrijs();
+            this.gepasseerdeArtikelen++;
+        }
     }
 
     /**
