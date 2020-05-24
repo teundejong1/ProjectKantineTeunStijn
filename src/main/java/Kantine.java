@@ -21,10 +21,10 @@ public class Kantine {
 //        Artikel hamburger = new Artikel("Hamburger", 5.95);
 //        dienbladFrank.voegToe(cola);
 //        dienbladFrank.voegToe(hamburger);
-        int j = artikelnamen.length-1;
+
         System.out.println("Deze persoon heeft " + artikelnamen.length + " artikelen gekocht.");
 
-        for (int i =0; i <= j; i++) {
+        for (int i =0; i <= artikelnamen.length-1; i++) {
             System.out.println(artikelnamen[i]);
             dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i]));
         }
