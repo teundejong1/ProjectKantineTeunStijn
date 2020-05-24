@@ -37,7 +37,7 @@ public class KantineAanbod {
         aanbod.put(productnaam, huidigeVoorraad);
     }
 
-    /*
+    /**
      * Private methode om de lijst van artikelen te krijgen op basis van de naam van het artikel.
      * Retourneert null als artikel niet bestaat.
      */

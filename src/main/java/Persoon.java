@@ -35,7 +35,7 @@ public class Persoon {
         bsn = 0;
         voornaam = "voornaam";
         achternaam = "achternaam";
-        geboortedatum = new Datum(); //Dit werkt nog niet, statics staan er nog, misschien daarom?
+        geboortedatum = new Datum();
         geslacht = 'o';
 
 

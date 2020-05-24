@@ -2,6 +2,8 @@ public class Kantine {
 
     private Kassa kassa;
     private KassaRij kassarij;
+    private KantineAanbod kantineAanbod;
+
 
     /**
      * Constructor
@@ -11,21 +13,32 @@ public class Kantine {
         kassa = new Kassa(kassarij);
     }
 
-    /**
-     * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar gekoppeld. Maak twee
-     * Artikelen aan en plaats deze op het dienblad. Tenslotte sluit de Persoon zich aan bij de rij
-     * voor de kassa.
-     */
-    public void loopPakSluitAan() {
-        Datum datumFrank = new Datum(1, 2, 1993);
-        Persoon Frank = new Persoon (12345, "Frank", "de Boer", datumFrank, 'M' );
-        Dienblad dienbladFrank = new Dienblad(Frank);
-        Artikel cola = new Artikel("Cola", 4.95);
-        Artikel hamburger = new Artikel("Hamburger", 5.95);
-        dienbladFrank.voegToe(cola);
-        dienbladFrank.voegToe(hamburger);
-        kassarij.sluitAchteraan(dienbladFrank);
-    }
+
+    public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
+//        Datum datumFrank = new Datum(1, 2, 1993);
+//        Persoon Frank = new Persoon (12345, "Frank", "de Boer", datumFrank, 'M' );
+//        Dienblad dienbladFrank = new Dienblad(Frank);
+//        Artikel cola = new Artikel("Cola", 4.95);
+//        Artikel hamburger = new Artikel("Hamburger", 5.95);
+//        dienblad.voegToe(hamburger);
+          kassarij.sluitAchteraan(dienblad);
+                  }
+
+//    /**
+//     * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar gekoppeld. Maak twee
+//     * Artikelen aan en plaats deze op het dienblad. Tenslotte sluit de Persoon zich aan bij de rij
+//     * voor de kassa.
+//     */
+//    public void loopPakSluitAan() {
+//        Datum datumFrank = new Datum(1, 2, 1993);
+//        Persoon Frank = new Persoon (12345, "Frank", "de Boer", datumFrank, 'M' );
+//        Dienblad dienbladFrank = new Dienblad(Frank);
+//        Artikel cola = new Artikel("Cola", 4.95);
+//        Artikel hamburger = new Artikel("Hamburger", 5.95);
+//        dienbladFrank.voegToe(cola);
+//        dienbladFrank.voegToe(hamburger);
+//        kassarij.sluitAchteraan(dienbladFrank);
+//    }
 
     public Kassa getKassa() {
         return kassa;
@@ -39,6 +52,15 @@ public class Kantine {
             kassa.rekenAf(kassarij.eerstePersoonInRij());
              }
     }
+
+    public KantineAanbod getKantineAanbod() {
+        return kantineAanbod;
+    }
+
+    public void setKantineAanbod(KantineAanbod kantineAanbod) {
+        this.kantineAanbod = kantineAanbod;
+    }
+
 
 //    /**
 //     * Deze methode telt het geld uit de kassa
