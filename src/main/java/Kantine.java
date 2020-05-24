@@ -4,7 +4,6 @@ public class Kantine {
     private KassaRij kassarij;
     private KantineAanbod kantineAanbod;
 
-
     /**
      * Constructor
      */
@@ -20,9 +19,17 @@ public class Kantine {
 //        Dienblad dienbladFrank = new Dienblad(Frank);
 //        Artikel cola = new Artikel("Cola", 4.95);
 //        Artikel hamburger = new Artikel("Hamburger", 5.95);
-//        dienblad.voegToe(hamburger);
-          kassarij.sluitAchteraan(dienblad);
-                  }
+//        dienbladFrank.voegToe(cola);
+//        dienbladFrank.voegToe(hamburger);
+        int j = artikelnamen.length-1;
+        System.out.println("Deze persoon heeft " + artikelnamen.length + " artikelen gekocht.");
+
+        for (int i =0; i <= j; i++) {
+            System.out.println(artikelnamen[i]);
+            dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i]));
+        }
+            kassarij.sluitAchteraan(dienblad);
+    }
 
 //    /**
 //     * In deze methode wordt een Persoon en Dienblad gemaakt en aan elkaar gekoppeld. Maak twee

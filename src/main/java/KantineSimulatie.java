@@ -121,13 +121,12 @@ public class KantineSimulatie {
                 int aantalartikelen = getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON) ;
 
                 // genereer de "artikelnummers", dit zijn indexen
-                // van de artikelnamen
-                int[] tepakken = getRandomArray( //array voor
+                // van de artikelnamen array
+                int[] tepakken = getRandomArray(
                         aantalartikelen, 0, AANTAL_ARTIKELEN-1);
                 // vind de artikelnamen op basis van
                 // de indexen hierboven
                 String[] artikelen = geefArtikelNamen(tepakken);
-
                 kantine.loopPakSluitAan(dienbladEdwin, artikelen);
                 // artikelen, sluit aan
 
@@ -135,7 +134,7 @@ public class KantineSimulatie {
             kantine.verwerkRijVoorKassa();
             System.out.println("#########################################");
             System.out.println(" ");
-            System.out.println("Dag " + i);
+            System.out.println("Dag " + (i+1));
             System.out.println("Dagtotalen:");
             System.out.println("------------");
             System.out.println();

@@ -52,6 +52,7 @@ public class Dienblad {
         artikelen.add(artikel);
     }
 
+
     public Iterator<Artikel> artikelIterator(){
             artIt = artikelen.iterator();
             return this.artIt;
