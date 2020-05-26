@@ -1,5 +1,10 @@
 import java.util.*;
-
+/**
+ * class KantineSimulatie - Deze klasse is verantwoordelijk voor het simuleren van de kantine.
+ *
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 24/05/2020.
+ */
 public class KantineSimulatie {
 
     // kantine
@@ -37,7 +42,7 @@ public class KantineSimulatie {
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
 
     /**
-     * Constructor
+     * Constructor voor de klasse KantinesSimulatie.
      *
      */
     public KantineSimulatie() {
@@ -155,6 +160,10 @@ public class KantineSimulatie {
 
         }
     }
+    /**
+     * Methode om de simulatie aan te roepen.
+     * @param args ???
+     */
     public static void main(String[] args) {
         int dagen;
 
