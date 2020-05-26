@@ -74,4 +74,5 @@ public class KantineAanbod {
     public Artikel getArtikel(String productnaam) {
         return getArtikel(getArrayList(productnaam));
     }
-}
+    }
+
