@@ -83,7 +83,7 @@ public class Kantine {
     }
     /**
      *Setter voor de artikelen die de kantine aanbied.
-     *
+     * @param kantineAanbod
      */
     public void setKantineAanbod(KantineAanbod kantineAanbod) {
         this.kantineAanbod = kantineAanbod;

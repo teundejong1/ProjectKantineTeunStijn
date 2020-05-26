@@ -83,10 +83,7 @@ public class Datum {
 	 */
 	public boolean bestaatDatum(int dag, int maand, int jaar) {
 		controleDatum();
-		if(dag==0 || maand==0 || jaar==0) {
-			return false;
-		}else
-			return true;
+		return dag != 0 && maand != 0 && jaar != 0;
 	}
 
 	/**
@@ -99,7 +96,7 @@ public class Datum {
 		return strDatum;
 	}
 	/**
-	 * Controleerd of de datum valide is.
+	 * Controleert of de datum valide is.
 	 */
 	public void controleDatum() {
 		/* Controleerd of het dagnummer groter of gelijk aan 1 is. */

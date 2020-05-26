@@ -59,8 +59,6 @@ public class Administratie {
                 temp[i] += omzet[i + 7 * j];
                 j++;
 
-                // omitted
-
             }
         }
         return temp;
