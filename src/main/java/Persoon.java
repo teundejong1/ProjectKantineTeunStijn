@@ -1,7 +1,6 @@
-import java.util.*;
+import java.util.Objects;
 /**
  * class Persoon - Deze klasse houdt de gegevens bij van een persoon.
- *
  * @author Teun de Jong en Stijn Wolthuis.
  * @version 19/05/2020.
  */
@@ -42,7 +41,7 @@ public class Persoon {
     }
     /**
      * Getter voor het geslacht van de persoon.
-     * @return geslacht van persoon.
+     * @return geslacht van persoon, type String.
      */
 
     public String getGeslacht () {
@@ -60,48 +59,54 @@ public class Persoon {
             return strGeslacht;
         }
 
-        return " ";
+        return "";
     }
+
     /**
      * Setter voor bsn nummer.
-     * @param bsn bsn nummer.
+     * @param bsn bsn nummer, type int.
      */
     public void setBsn ( int bsn){
         this.bsn = bsn;
     }
+
     /**
      * Setter voor voornaam.
-     * @param voornaam voornaam van persoon.
+     * @param voornaam voornaam van persoon, type String.
      */
     public void setVoornaam (String voornaam){
         this.voornaam = voornaam;
     }
+
     /**
      * Setter voor achternaam.
-     * @param achternaam achternaam van persoon.
+     * @param achternaam achternaam van persoon, type String.
      */
     public void setAchternaam (String achternaam){
         this.achternaam = achternaam;
     }
+
     /**
      * Setter voor geboortedatum.
-     * @param geboortedatum geboortedatum van persoon.
+     * @param geboortedatum geboortedatum van persoon, type Datum.
      */
     public void setGeboortedatum (Datum geboortedatum){
         this.geboortedatum = geboortedatum;
     }
+
     /**
      * Setter voor het geslacht.
-     * @param geslacht geslacht van persoon
+     * @param geslacht geslacht van persoon, type char.
      */
     public void setGeslacht ( char geslacht){
         checkGeslacht(geslacht);
         this.geslacht = geslacht;
     }
+
     /**
      * Controleerd of het geslacht bestaat.
-     * @param geslacht geslacht van persoon.
-     * @return of het geslacht geldig is.
+     * @param geslacht geslacht van persoon, type char.
+     * @return true als geldig geslacht, anders false.
      */
     private boolean checkGeslacht ( char geslacht){
          if (geslacht == 'M') {
@@ -120,30 +125,34 @@ public class Persoon {
             return false;
          }
     }
+
     /**
      * Getter voor bsn van de persoon.
-     * @return bsn nummer.
+     * @return bsn nummer, type int.
      */
     public int getBsn() {
         return bsn;
     }
+
     /**
      * Getter voor de voornaam van de persoon.
-     * @return voornaam persoon.
+     * @return voornaam persoon, type String.
      */
     public String getVoornaam() {
         return voornaam;
     }
+
     /**
      * Getter voor de achternaam van de persoon.
-     * @return achternaam persoon.
+     * @return achternaam persoon, type String.
      */
     public String getAchternaam() {
         return achternaam;
     }
+
     /**
      * Getter voor geboortedatum van de persoon, met controle of datum bekend is.
-     * @return geboortedatum persoon.
+     * @return geboortedatum persoon, type Datum.
      */
     public String getGeboortedatum() {
         if(geboortedatum.getDatumAsString().equals("0-0-0")){
@@ -151,9 +160,10 @@ public class Persoon {
         }   else
          return geboortedatum.getDatumAsString();
     }
+
     /**
-     * omzetten van alle gegevens van een persoon in een string.
-     * @return alle gegevens van persoon.
+     * omzetten van alle gegevens van een persoon in een String.
+     * @return String met bsn nummer, voornaam, achternaam, geboortedatum en geslacht.
      */
     public String toString(){//overriding the toString() method
         return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;

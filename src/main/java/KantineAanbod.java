@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * class KantineAanbod - Deze klasse houdt het aanbod van de kantine bij.
  *
@@ -12,9 +13,10 @@ public class KantineAanbod {
     private HashMap<String, Double> prijzen;
 
     /**
-     * Constructor. Het eerste argument is een lijst met artikelnamen, het tweede argument is
-     * eenlijst met prijzen en het derde argument is een lijst met hoeveelheden. Let op: de
-     * dimensies van de drie arrays moeten wel gelijk zijn!
+     * Constructor voor de klasse KantineAanbod.
+     * @param artikelnaam een lijst van artikelnamen
+     * @param prijs een double prijs
+     * @param hoeveelheid een lijst van prijzen
      */
     public KantineAanbod(String[] artikelnaam, double[] prijs, int[] hoeveelheid) {
         aanbod = new HashMap<String, ArrayList<Artikel>>();
@@ -32,8 +34,7 @@ public class KantineAanbod {
     }
     /**
      * Methode voor het aanvullen van de voorraad van de kantine.
-     *
-     * @param productnaam namen van de producten die worden aangevuld.
+     * @param productnaam String namen van de producten die worden aangevuld.
      */
     private void vulVoorraadAan(String productnaam) {
         ArrayList<Artikel> huidigeVoorraad = aanbod.get(productnaam);
@@ -48,15 +49,15 @@ public class KantineAanbod {
 
     /**
      * Private methode om de lijst van artikelen te krijgen op basis van de naam van het artikel.
-     * Retourneert null als artikel niet bestaat.
+     * @return artikel, of als het artikel niet bestaat null.
      */
     private ArrayList<Artikel> getArrayList(String productnaam) {
         return aanbod.get(productnaam);
     }
 
     /**
-     * Private methode om een Artikel van de stapel artikelen af te pakken. Retourneert null als de
-     * stapel leeg is.
+     * Private methode om een Artikel van de stapel artikelen af te pakken.
+     * @return artikel of null.
      */
     private Artikel getArtikel(ArrayList<Artikel> stapel) {
         if (stapel == null) {
@@ -74,9 +75,7 @@ public class KantineAanbod {
     }
 
     /**
-     * Publieke methode om een artikel via naam van de stapel te pakken. Retouneert null als artikel
-     * niet bestaat of niet op voorraad is.
-     *
+     * Publieke methode om een artikel via naam van de stapel te pakken.
      * @param productnaam van artikel
      * @return artikel (of null)
      */
