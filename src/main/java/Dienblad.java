@@ -51,7 +51,10 @@ public class Dienblad {
     public void voegToe(Artikel artikel) {
         artikelen.add(artikel);
     }
-
+    /**
+     * Iterator loop door de artikelen heen.
+     * @return het huidige product
+     */
 
     public Iterator<Artikel> artikelIterator(){
             artIt = artikelen.iterator();

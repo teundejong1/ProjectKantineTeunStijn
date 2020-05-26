@@ -1,5 +1,10 @@
 import java.util.*;
-
+/**
+ * class KantineAanbod - Deze klasse houdt het aanbod van de kantine bij.
+ *
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 24/05/2020.
+ */
 public class KantineAanbod {
     // interne opslag voorraad
     private HashMap<String, ArrayList<Artikel>> aanbod;
@@ -25,7 +30,11 @@ public class KantineAanbod {
             aanbod.put(artikelnaam[i], artikelen);
         }
     }
-
+    /**
+     * Methode voor het aanvullen van de voorraad van de kantine.
+     *
+     * @param productnaam namen van de producten die worden aangevuld.
+     */
     private void vulVoorraadAan(String productnaam) {
         ArrayList<Artikel> huidigeVoorraad = aanbod.get(productnaam);
         int startHoeveelheid = startVoorraad.get(productnaam);
@@ -68,7 +77,7 @@ public class KantineAanbod {
      * Publieke methode om een artikel via naam van de stapel te pakken. Retouneert null als artikel
      * niet bestaat of niet op voorraad is.
      *
-     * @param naam (van artikel)
+     * @param productnaam van artikel
      * @return artikel (of null)
      */
     public Artikel getArtikel(String productnaam) {
