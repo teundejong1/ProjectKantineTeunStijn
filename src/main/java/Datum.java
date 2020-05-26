@@ -83,10 +83,7 @@ public class Datum {
 	 */
 	public boolean bestaatDatum(int dag, int maand, int jaar) {
 		controleDatum();
-		if(dag==0 || maand==0 || jaar==0) {
-			return false;
-		}else
-			return true;
+		return dag != 0 && maand != 0 && jaar != 0;
 	}
 
 	/**
@@ -102,23 +99,23 @@ public class Datum {
 	 * Controleerd of de datum valide is.
 	 */
 	public void controleDatum() {
-		/* Controleerd of het dagnummer groter of gelijk aan 1 is. */
-		if (dag < 1 || (dag > dagenInMaand))  {
+		/* Controleert of het dagnummer groter of gelijk aan 1 is. */
+		if (dag < 1 || (dag > dagenInMaand)) {
 			dag = 0;
 			maand = 0;
 			jaar = 0;
 
 		}
 
-		/* Controleerd of de maand binnen 1 en 12 valt. */
+		/* Controleert of de maand binnen 1 en 12 valt. */
 		if (maand < 1 || maand > 12) {
 			dag = 0;
 			maand = 0;
 			jaar = 0;
 		}
 
-		/* Controleerd of het jaar getal binnen 1900 en 2100 is. */
-		if (jaar< 1900 || jaar> 2100) {
+		/* Controleert of het jaar getal binnen 1900 en 2100 is. */
+		if (jaar < 1900 || jaar > 2100) {
 			dag = 0;
 			maand = 0;
 			jaar = 0;

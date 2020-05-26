@@ -18,8 +18,7 @@ public class Kantine {
         kassa = new Kassa(kassarij);
     }
     /**
-     * Methode voor het pakken van een klant uit de rij en deze laten afrekenen.
-     *
+     * Methode voor het pakken van artikelen op het dienblad en vervolgens achteraan sluiten bij de kassarij.
      * @param dienblad dienblad van de persoon.
      * @param artikelnamen namen van de artikelen op het dienblad.
      */
@@ -36,7 +35,7 @@ public class Kantine {
         System.out.println("Deze persoon heeft " + artikelnamen.length + " artikelen gekocht.");
 
         for (int i =0; i <= artikelnamen.length-1; i++) {
-            System.out.println(artikelnamen[i]);
+            System.out.println(artikelnamen[i]); //Deze kan later weg, is voor het weergeven van de artikelen.
             dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i]));
         }
             kassarij.sluitAchteraan(dienblad);
@@ -58,15 +57,15 @@ public class Kantine {
 //        kassarij.sluitAchteraan(dienbladFrank);
 //    }
     /**
-     * getter voor de inhoud van de kassa.
-     * @return kassa inhoud.
+     * getter voor de klasse kassa
+     * @return kassa van het type kassa.
      */
     public Kassa getKassa() {
         return kassa;
     }
 
     /**
-     * Deze methode handelt de rij voor de kassa af.
+     * Deze methode handelt de rij voor de kassa af via de rekenAf methode.
      */
     public void verwerkRijVoorKassa() {
         while (kassarij.erIsEenRij()) {
@@ -75,15 +74,15 @@ public class Kantine {
     }
     /**
      * Getter om het aanbod van de kantine op te halen.
-     *
-     * @return alle artikelen die de kantine aanbied.
+     * @return het huidige kantineaanbod.
      */
     public KantineAanbod getKantineAanbod() {
         return kantineAanbod;
     }
+
     /**
      *Setter voor de artikelen die de kantine aanbied.
-     *
+     * @param kantineAanbod het huidige kantineaanbod.
      */
     public void setKantineAanbod(KantineAanbod kantineAanbod) {
         this.kantineAanbod = kantineAanbod;

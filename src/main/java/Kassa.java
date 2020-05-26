@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Iterator;
 /**
  * class Kassa - Deze klasse is verantwoordelijk voor de kassa.
@@ -24,7 +23,7 @@ public class Kassa {
      * Vraag het aantal artikelen en de totaalprijs op. Tel deze gegevens op bij de controletotalen
      * die voor de kassa worden bijgehouden. De implementatie wordt later vervangen door een echte
      * betaling door de persoon.
-     * @param klant die moet afrekenen.
+     * @param klant die moet afrekenen, type Dienblad.
      */
     public void rekenAf(Dienblad klant) {
         Iterator<Artikel> itr = klant.artikelIterator();
@@ -37,8 +36,7 @@ public class Kassa {
     /**
      * Geeft het aantal artikelen dat de kassa heeft gepasseerd, vanaf het moment dat de methode
      * resetWaarden is aangeroepen.
-     *
-     * @return aantal artikelen.
+     * @return aantal artikelen, type int.
      */
     public int aantalArtikelen() {
         return this.gepasseerdeArtikelen;
@@ -47,8 +45,7 @@ public class Kassa {
     /**
      * Geeft het totaalbedrag van alle artikelen die de kassa zijn gepasseerd, vanaf het moment dat
      * de methode resetKassa is aangeroepen.
-     *
-     * @return hoeveelheid geld in de kassa.
+     * @return hoeveelheid geld in de kassa, type double.
      */
 
     public double hoeveelheidGeldInKassa() {
@@ -58,7 +55,7 @@ public class Kassa {
 
     /**
      * reset de waarden van het aantal gepasseerde artikelen en de totale hoeveelheid geld in de
-     * kassa.
+     * kassa naar 0.
      */
     public void resetKassa() {
         this.hoeveelheidKassa = 0;

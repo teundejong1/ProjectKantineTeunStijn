@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 /**
@@ -22,8 +21,8 @@ public class Dienblad {
 
     /**
      * Constructor van de objecten van klasse Dienblad.
+     * @param klant van het type Persoon
      */
-
     public Dienblad(Persoon klant) {
         this.klant = klant;
         artikelen = new Stack<Artikel>();
@@ -31,13 +30,15 @@ public class Dienblad {
 
     /**
      * Getter voor klant.
+     *
+     * @return de klant
      */
     public Persoon getKlant() {
         return this.klant;
     }
     /**
      * Setter voor klant.
-     * @param klant de klant.
+     * @param klant van het type Persoon.
      */
     public void setKlant(Persoon klant) {
         this.klant = klant;
@@ -51,15 +52,15 @@ public class Dienblad {
     public void voegToe(Artikel artikel) {
         artikelen.add(artikel);
     }
-    /**
-     * Iterator loop door de artikelen heen.
-     * @return het huidige product
-     */
 
-    public Iterator<Artikel> artikelIterator(){
-            artIt = artikelen.iterator();
-            return this.artIt;
-          }
+    /**
+     * Iterator loopt door de artikelen heen.
+     * @return de iterator van artikelen.
+     */
+    public Iterator<Artikel> artikelIterator() {
+        artIt = artikelen.iterator();
+        return this.artIt;
+    }
 
 //    /**
 //     * Methode om aantal artikelen op dienblad te tellen.

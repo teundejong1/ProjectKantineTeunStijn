@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.LinkedList;
 /**
  * class KassaRij - Deze klasse houdt de rij bij van de kassa.
  *
@@ -11,27 +11,23 @@ public class KassaRij {
     /**
      * Constructor voor de klasse KassaRij.
      */
-
     public KassaRij() {
         klantRij = new LinkedList<Dienblad>();
     }
 
     /**
      * Persoon sluit achter in de rij aan.
-     *
-     * @param klant
+     * @param klant Dienblad van de klant.
      */
     public void sluitAchteraan(Dienblad klant) {
         klantRij.add(klant);
     }
 
 
-
     /**
-     * Indien er een rij bestaat, de eerste Klant uit de rij verwijderen en retourneren. Als er
+     * Methode die kijkt of er een rij bestaat, de eerste Klant uit de rij verwijderen en retourneren. Als er
      * niemand in de rij staat geeft deze null terug.
-     *
-     * @return Eerste Klant in de rij of null
+     * @return Eerste Klant in de rij (type Dienblad) of null
      */
     public Dienblad eerstePersoonInRij() {
         if(klantRij.isEmpty()){
@@ -45,8 +41,7 @@ public class KassaRij {
     }
     /**
      * Methode kijkt of er personen in de rij staan.
-     *
-     * @return Of er wel of geen rij bestaat.
+     * @return true als er een rij bestaat, anders false.
      */
     public boolean erIsEenRij() {
         return (klantRij.size() > 0);
