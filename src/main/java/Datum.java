@@ -96,7 +96,7 @@ public class Datum {
 		return strDatum;
 	}
 	/**
-	 * Controleerd of de datum valide is.
+	 * Controleert of de datum valide is.
 	 */
 	public void controleDatum() {
 		/* Controleert of het dagnummer groter of gelijk aan 1 is. */
