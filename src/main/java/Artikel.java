@@ -55,7 +55,7 @@ public class Artikel {
      * Slaat de naam en prijs op in een String.
      * @return naam en prijs van artikel.
      */
-    public String toString(){//overriding the toString() method
+     public String toString(){//overriding the toString() method
         return naam+" "+prijs;
     }
 }

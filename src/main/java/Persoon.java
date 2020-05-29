@@ -161,11 +161,24 @@ public class Persoon {
          return geboortedatum.getDatumAsString();
     }
 
-    /**
-     * omzetten van alle gegevens van een persoon in een String.
-     * @return String met bsn nummer, voornaam, achternaam, geboortedatum en geslacht.
-     */
-    public String toString(){//overriding the toString() method
-        return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;
+//    /**
+//     * omzetten van alle gegevens van een persoon in een String.
+//     * @return String met bsn nummer, voornaam, achternaam, geboortedatum en geslacht.
+//     */
+//    @Override
+//    public String toString(){//overriding the toString() method
+//        return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;
+//    }
+    @Override
+    public String toString() {
+        if (this instanceof Student) {
+            return "Student";
+        }
+        else if (this instanceof Docent) {
+            return "Docent";
+        }
+        else {
+            return "Kantine Medewerker";
+        }
     }
 }

@@ -1,5 +1,7 @@
 public class Administratie {
 
+    private static final int DAYS_IN_WEEK = 7;
+
     private Administratie() {
     }
 
@@ -19,7 +21,6 @@ public class Administratie {
         } else {
             for (int value : aantal) {
                 totaal += value;
-                System.out.println(totaal);
             }
             return totaal / aantal.length;
         }
@@ -51,16 +52,17 @@ public class Administratie {
      */
 
     public static double[] berekenDagOmzet(double[] omzet) {
-        double[] temp = new double[7];
-        int teller = 0;
-        for(int i = 0; i < 7; i++) {
+
+        double[] temp = new double[DAYS_IN_WEEK];
+
+        for(int i = 0; i < DAYS_IN_WEEK; i++) {
+
             int j = 0;
             while (j < omzet.length) {
-                temp[i] += omzet[i + 7 * j];
+                if (i == j % DAYS_IN_WEEK) {
+                    temp[i] += omzet[j];
+                }
                 j++;
-
-                // omitted
-
             }
         }
         return temp;
