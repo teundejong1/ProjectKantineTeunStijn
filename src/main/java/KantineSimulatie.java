@@ -12,7 +12,7 @@ import java.util.Random;
 public class KantineSimulatie {
 
     //Dagen
-    public static final int DAGEN = 7;
+    public static final int DAGEN = 15;
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN = 4;
     // artikelen
@@ -35,12 +35,13 @@ public class KantineSimulatie {
     private final KantineAanbod kantineaanbod;
     // random generator
     private final Random random;
-//    int studenten89 = 89;
+    //    int studenten89 = 89;
 //    int docent10 = 10;
 //    int kantinemedewerker1 = 1;
     int aantalStudenten = 0;
     int aantalDocenten = 0;
     int aantalKantineMedewerkers = 0;
+
     /**
      * Constructor voor de klasse KantinesSimulatie.
      */
@@ -55,6 +56,7 @@ public class KantineSimulatie {
 
     /**
      * Main methode om de simulatie aan te roepen.
+     *
      * @param args de standaard main methode.
      */
     public static void main(String[] args) {
@@ -72,9 +74,10 @@ public class KantineSimulatie {
     /**
      * Methode om een array van random getallen liggend tussen min en max van de gegeven lengte, min en max te
      * genereren
+     *
      * @param lengte van het type int van de array.
-     * @param min van het type int.
-     * @param max van het type int.
+     * @param min    van het type int.
+     * @param max    van het type int.
      * @return De array met random getallen
      */
     private int[] getRandomArray(int lengte, int min, int max) {
@@ -87,6 +90,7 @@ public class KantineSimulatie {
 
     /**
      * Methode om een random getal tussen min(incl) en max(incl) te genereren.
+     *
      * @param min minimum van het type int.
      * @param max maximum van het type int.
      * @return Een random getal tussen de min en max.
@@ -98,6 +102,7 @@ public class KantineSimulatie {
     /**
      * Methode om op basis van een array van indexen voor de array artikelnamen de bijhorende array
      * van artikelnamen te maken
+     *
      * @param indexen van arrays int[].
      * @return De array met artikelnamen.
      */
@@ -113,32 +118,29 @@ public class KantineSimulatie {
 
     /**
      * Deze methode rond de getallen af, zodat de doubles goed worden weergegeven
-     *
      */
-    private double rondAf(double afTeRonden){
-    return Math.round(afTeRonden * 100.0) / 100.0;
+    private double rondAf(double afTeRonden) {
+        return Math.round(afTeRonden * 100.0) / 100.0;
     }
 
-    private void genereerKantineBezoekers(){
-        for (int i = 0; i < 100; i++){
+    private void genereerKantineBezoekers() {
+        for (int i = 0; i < 100; i++) {
             int nextInt = getRandomValue(0, 100);
-            if (nextInt > 10){
+            if (nextInt > 10) {
                 aantalStudenten++;
-            }
-            else if (nextInt > 0){
+            } else if (nextInt > 0) {
                 aantalDocenten++;
+            } else {
+                aantalKantineMedewerkers++;
             }
-                else {
-                    aantalKantineMedewerkers++;
-                }
 
-            }
         }
+    }
 
 
-    private void resetKantineBezoekers(){
-        aantalStudenten =0;
-        aantalDocenten =0;
+    private void resetKantineBezoekers() {
+        aantalStudenten = 0;
+        aantalDocenten = 0;
         aantalKantineMedewerkers = 0;
 
     }
@@ -147,6 +149,7 @@ public class KantineSimulatie {
     /**
      * Deze methode simuleert een aantal dagen
      * in het verloop van de kantine
+     *
      * @param dagen het aantal dagen dat je de simulatie wilt runnen, type int.
      */
     public void simuleer(int dagen) {
@@ -223,43 +226,49 @@ public class KantineSimulatie {
             }
             kantine.verwerkRijVoorKassa(); //Hier maken wij een netjes bonnetje, ter verduideliking van de resultaten.
             System.out.println("#########################################");
+
             System.out.println(" ");
             System.out.println("Dag " + (i + 1));
-            System.out.println("Dagtotalen:");
+            System.out.println("Dagtotalen : ");
             System.out.println("------------");
             System.out.println();
             System.out.println("Personen : " + aantalpersonen);
-            System.out.println("Artikelen: " + kantine.getKassa().aantalArtikelen());
+            System.out.println(aantalStudenten + " studenten");
+            System.out.println(aantalDocenten + " docenten");
+            System.out.println(aantalKantineMedewerkers + " kantine medewerkers");
+            System.out.println("Artikelen : " + kantine.getKassa().aantalArtikelen());
             System.out.println("Geld: €" + rondAf(kantine.getKassa().hoeveelheidGeldInKassa()));
             System.out.println(" ");
             System.out.println("#########################################");
-
             verkochteAantalProducten[i] = kantine.getKassa().aantalArtikelen();
             omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
             kantine.getKassa().resetKassa();
             resetKantineBezoekers();
 
-
             // verwerk rij voor de kassa
-
             // druk de dagtotalen af en hoeveel personen binnen
-
             // zijn gekomen
-
             // reset de kassa voor de volgende dag
 
         }
         System.out.println();
-        System.out.println("Administratie:");
+        System.out.println("Administratie: ");
         System.out.println();
-        System.out.println("Verkochte aantal producten:");
+        System.out.println("Verkochte aantal producten: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldAantal(verkochteAantalProducten)));
-        System.out.println("Dagomzet:");
-        for (double value : Administratie.berekenDagOmzet(omzet)){
-            System.out.println(rondAf(value));
-        }
-        System.out.println("Gemiddelde omzet:");
+        System.out.println("Gemiddelde omzet: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldeOmzet(omzet)));
+        System.out.println(printDagOmzet(omzet));
+    }
 
+    private String printDagOmzet(double[] DagenInWeekOmzet) {
+        int i = 0;
+        String poepchinees = "Omzet per dag: \n";
+        for (double value1 : Administratie.berekenDagOmzet(DagenInWeekOmzet)) {
+            String[] weekdagen = {"Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"};
+            poepchinees += weekdagen[i] + ": " + rondAf(value1) + "\n";
+            i++;
+        }
+        return poepchinees;
     }
 }

@@ -26,10 +26,10 @@ public class Kantine {
     public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
 
 
-        //System.out.println("Deze persoon heeft " + artikelnamen.length + " artikelen gekocht.");
+       // System.out.println("Deze persoon heeft " + artikelnamen.length + " artikelen gekocht.");
 
         for (int i =0; i <= artikelnamen.length-1; i++) {
-        //    System.out.println(artikelnamen[i]); //Deze kan later weg, is voor het weergeven van de artikelen.
+           // System.out.println(artikelnamen[i]); //Deze kan later weg, is voor het weergeven van de artikelen.
             dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i]));
         }
             kassarij.sluitAchteraan(dienblad);
