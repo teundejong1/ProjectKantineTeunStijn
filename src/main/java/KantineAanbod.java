@@ -57,6 +57,7 @@ public class KantineAanbod {
 
     /**
      * Private methode om een Artikel van de stapel artikelen af te pakken.
+     * @param stapel stack met artikelen.
      * @return artikel of null.
      */
     private Artikel getArtikel(ArrayList<Artikel> stapel) {

@@ -14,6 +14,11 @@ public class Persoon {
 
     /**
      * Constructor van de klasse Persoon.
+     * @param bsn van de klant.
+     * @param voornaam van de klant.
+     * @param achternaam van de klant.
+     * @param geboortedatum van de klant.
+     * @param geslacht van de klant.
      */
 
     public Persoon(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht) {
@@ -169,6 +174,9 @@ public class Persoon {
 //    public String toString(){//overriding the toString() method
 //        return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;
 //    }
+    /**
+     * was deze?
+     */
     @Override
     public String toString() {
         if (this instanceof Student) {

@@ -29,7 +29,6 @@ public class Dienblad {
 
     /**
      * Getter voor klant.
-     *
      * @return de klant
      */
     public Persoon getKlant() {

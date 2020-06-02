@@ -1,5 +1,9 @@
 public class Administratie {
-
+    /**
+     * class Administratie  - Deze klasse is voor de administratie van de kantine.
+     * @author Teun de Jong en Stijn Wolthuis.
+     * @version 02/06/2020.
+     */
     private static final int DAYS_IN_WEEK = 7;
 
     private Administratie() {
@@ -7,7 +11,6 @@ public class Administratie {
 
     /**
      * Deze methode berekent van de int array aantal de gemiddelde waarde
-     *
      * @param aantal
      * @return het gemiddelde
      */
@@ -28,8 +31,7 @@ public class Administratie {
 
     /**
      * Deze methode berekent van de double array omzet de gemiddelde waarde
-     *
-     * @param omzet
+     * @param omzet gemiddelde van de week
      * @return het gemiddelde
      */
     public static double berekenGemiddeldeOmzet(double[] omzet) {
@@ -46,8 +48,7 @@ public class Administratie {
 
     /**
      * Methode om dagomzet uit te rekenen
-     *
-     * @param omzet
+     * @param omzet van de dagen
      * @return array (7 elementen) met dagomzetten
      */
 
