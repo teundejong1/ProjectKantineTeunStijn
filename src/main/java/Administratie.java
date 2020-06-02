@@ -14,8 +14,6 @@ public class Administratie {
      * @param aantal
      * @return het gemiddelde
      */
-
-
     public static double berekenGemiddeldAantal(int[] aantal) {
 
         double totaal = 0;
@@ -51,7 +49,6 @@ public class Administratie {
      * @param omzet van de dagen
      * @return array (7 elementen) met dagomzetten
      */
-
     public static double[] berekenDagOmzet(double[] omzet) {
 
         double[] temp = new double[DAYS_IN_WEEK];

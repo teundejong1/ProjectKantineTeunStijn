@@ -1,6 +1,3 @@
-import org.hibernate.query.criteria.internal.expression.SizeOfPluralAttributeExpression;
-
-import java.sql.SQLOutput;
 import java.util.Random;
 
 /**
@@ -12,7 +9,7 @@ import java.util.Random;
 public class KantineSimulatie {
 
     //Dagen
-    public static final int DAGEN = 15;
+    public static final int DAGEN = 7;
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN = 4;
     // artikelen
@@ -21,10 +18,6 @@ public class KantineSimulatie {
     // minimum en maximum aantal artikelen per soort
     private static final int MIN_ARTIKELEN_PER_SOORT = 10;
     private static final int MAX_ARTIKELEN_PER_SOORT = 20;
-    // minimum en maximum aantal personen per dag
-//    private static final int MIN_PERSONEN_PER_DAG = 50;
-//    private static final int MAX_PERSONEN_PER_DAG = 100;
-    // minimum en maximum artikelen per persoon
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
     // prijzen
@@ -35,9 +28,9 @@ public class KantineSimulatie {
     private final KantineAanbod kantineaanbod;
     // random generator
     private final Random random;
-    //    int studenten89 = 89;
-//    int docent10 = 10;
-//    int kantinemedewerker1 = 1;
+    // aantal personen worden hier op 0 gezet.
+    int MIN_PERSONEN_PER_DAG = 50;
+    int MAX_PERSONEN_PER_DAG = 100;
     int aantalStudenten = 0;
     int aantalDocenten = 0;
     int aantalKantineMedewerkers = 0;
@@ -123,21 +116,27 @@ public class KantineSimulatie {
         return Math.round(afTeRonden * 100.0) / 100.0;
     }
 
+    /**
+     * Deze methode genereert het aantal bezoekers en hoe veel, van welk type bezoekers komen.
+     */
     private void genereerKantineBezoekers() {
-        for (int i = 0; i < 100; i++) {
+        int r = getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG); // Maak hier de r aan van min personen per dag en max personen per dag.
+        for (int i = 0; i < r; i++) {
             int nextInt = getRandomValue(0, 100);
-            if (nextInt > 10) {
+            if (nextInt > 10) { // student met een kans van 1 op 89
                 aantalStudenten++;
-            } else if (nextInt > 0) {
+            } else if (nextInt > 0) { // docent met een kans van 1 op 10
                 aantalDocenten++;
-            } else {
+            } else { //kantinemedewerker met een kans van 1 op 100
                 aantalKantineMedewerkers++;
             }
-
         }
     }
 
 
+    /**
+     * Deze methode reset de kantinebezoekers weer naar 0.
+     */
     private void resetKantineBezoekers() {
         aantalStudenten = 0;
         aantalDocenten = 0;
@@ -251,24 +250,29 @@ public class KantineSimulatie {
             // reset de kassa voor de volgende dag
 
         }
-        System.out.println();
+        System.out.println(); // Aan het einde, wordt de administratie geprint.
         System.out.println("Administratie: ");
         System.out.println();
-        System.out.println("Verkochte aantal producten: ");
+        System.out.println("Gemiddelde verkochte aantal producten: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldAantal(verkochteAantalProducten)));
         System.out.println("Gemiddelde omzet: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldeOmzet(omzet)));
         System.out.println(printDagOmzet(omzet));
     }
 
+    /**
+     * Deze methode telt de omzet per dag bij de dag op.
+     * @param DagenInWeekOmzet van het type double[].
+     * @return een String met per dag, de omzet.
+     */
     private String printDagOmzet(double[] DagenInWeekOmzet) {
         int i = 0;
-        String poepchinees = "Omzet per dag: \n";
+        String dagOmzet = "Omzet per dag: \n";
         for (double value1 : Administratie.berekenDagOmzet(DagenInWeekOmzet)) {
             String[] weekdagen = {"Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"};
-            poepchinees += weekdagen[i] + ": " + rondAf(value1) + "\n";
+            dagOmzet += weekdagen[i] + ": €" + rondAf(value1) + "\n";
             i++;
         }
-        return poepchinees;
+        return dagOmzet;
     }
 }
