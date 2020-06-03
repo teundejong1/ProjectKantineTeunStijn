@@ -29,6 +29,7 @@ public class KantineMedewerker extends Persoon {
     public int getMedewerkersnummer() {
         return medewerkersnummer;
     }
+
     /**
      * setter voor medewerkersnummer van de medewerker.
      * @param medewerkersnummer van de medewerker.
@@ -36,6 +37,7 @@ public class KantineMedewerker extends Persoon {
     public void setMedewerkersnummer(int medewerkersnummer) {
         this.medewerkersnummer = medewerkersnummer;
     }
+
     /**
      * Getter voor bevoegdheid van de medewerker.
      * @return bevoegdheid van de medewerker
@@ -43,6 +45,7 @@ public class KantineMedewerker extends Persoon {
     public boolean isToestaanKasasa() {
         return toestaanKasasa;
     }
+
     /**
      * Setter voor bevoegdheid van medewerker.
      * @param toestaanKasasa is de medewerker bevoegd om de kassa te gebruiken.
@@ -50,4 +53,5 @@ public class KantineMedewerker extends Persoon {
     public void setToestaanKasasa(boolean toestaanKasasa) {
         this.toestaanKasasa = toestaanKasasa;
     }
+
 }
