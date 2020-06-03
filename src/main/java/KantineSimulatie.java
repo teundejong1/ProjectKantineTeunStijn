@@ -123,6 +123,8 @@ public class KantineSimulatie {
         return Math.round(afTeRonden * 100.0) / 100.0;
     }
 
+
+
     private void genereerKantineBezoekers() {
         for (int i = 0; i < 100; i++) {
             int nextInt = getRandomValue(0, 100);
