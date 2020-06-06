@@ -33,7 +33,7 @@ public class KantineAanbod {
         }
     }
     /**
-     * Methode voor het aanvullen van de voorraad van de kantine.
+     * Private Methode voor het aanvullen van de voorraad van de kantine.
      * @param productnaam String namen van de producten die worden aangevuld.
      */
     private void vulVoorraadAan(String productnaam) {

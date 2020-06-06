@@ -18,26 +18,20 @@ public class Kantine {
         kassa = new Kassa(kassarij);
     }
     /**
-     * Methode voor het pakken van artikelen op het dienblad en vervolgens achteraan sluiten bij de kassarij.
+     * Publieke Methode voor het pakken van artikelen op het dienblad en vervolgens achteraan sluiten bij de kassarij.
      * @param dienblad dienblad van de persoon.
      * @param artikelnamen namen van de artikelen op het dienblad.
      */
-
     public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
-
-
-       // System.out.println("Deze persoon heeft " + artikelnamen.length + " artikelen gekocht.");
-
         for (int i =0; i <= artikelnamen.length-1; i++) {
-           // System.out.println(artikelnamen[i]); //Deze kan later weg, is voor het weergeven van de artikelen.
-            dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i]));
+            dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i])); // Voeg artikelen toe aan het dienblad.
         }
             kassarij.sluitAchteraan(dienblad);
     }
 
 
     /**
-     * getter voor de klasse kassa
+     * Publieke getter voor de klasse kassa
      * @return kassa van het type kassa.
      */
     public Kassa getKassa() {
@@ -45,15 +39,15 @@ public class Kantine {
     }
 
     /**
-     * Deze methode handelt de rij voor de kassa af via de rekenAf methode.
+     * Deze Publieke methode handelt de rij voor de kassa af via de rekenAf methode.
      */
     public void verwerkRijVoorKassa() {
-        while (kassarij.erIsEenRij()) {
-            kassa.rekenAf(kassarij.eerstePersoonInRij());
+        while (kassarij.erIsEenRij()) { // Checkt of er een rij is.
+            kassa.rekenAf(kassarij.eerstePersoonInRij()); //Reken af met de eerste persoon in de rij.
              }
     }
     /**
-     * Getter om het aanbod van de kantine op te halen.
+     * Publieke Getter om het aanbod van de kantine op te halen.
      * @return het huidige kantineaanbod.
      */
     public KantineAanbod getKantineAanbod() {
@@ -61,7 +55,7 @@ public class Kantine {
     }
 
     /**
-     *Setter voor de artikelen die de kantine aanbied.
+     * Publieke Setter voor de artikelen die de kantine aanbied.
      * @param kantineAanbod het huidige kantineaanbod.
      */
     public void setKantineAanbod(KantineAanbod kantineAanbod) {

@@ -24,35 +24,35 @@ public class Artikel {
         prijs = 0;
     }
     /**
-     * Getter voor de naam van het artikel.
+     * Publieke Getter voor de naam van het artikel.
      * @return de naam van het artikel
      */
     public String getNaam() {
         return naam;
     }
     /**
-     * Getter voor de prijs van het artikel
+     * Publieke Getter voor de prijs van het artikel
      * @return de prijs van het artikel
      */
     public double getPrijs() {
         return prijs;
     }
     /**
-     * Setter voor de de naam van het artikel.
+     * Publieke Setter voor de de naam van het artikel.
      * @param naam naam van artikel
      */
     public void setNaam(String naam) {
         this.naam = naam;
     }
     /**
-     * Setter voor de prijs van het artikel.
+     * Publieke Setter voor de prijs van het artikel.
      * @param prijs van artikel.
      */
     public void setPrijs(double prijs) {
         this.prijs = prijs;
     }
     /**
-     * Slaat de naam en prijs op in een String.
+     * Publieke methode die de naam en prijs opslaat in een String.
      * @return naam en prijs van artikel.
      */
      public String toString(){//overriding the toString() method

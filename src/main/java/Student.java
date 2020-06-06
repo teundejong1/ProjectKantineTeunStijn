@@ -21,29 +21,40 @@ public class Student extends Persoon {
         this.studentnummer = studentnummer;
         this.studierichting = studierichting;
     }
+
     /**
-     * Getter voor het studentnummer van de student.
+     * Lege constructor voor klasse Student.
+     */
+    public Student() {
+    }
+
+    /**
+     * Publieke Getter voor het studentnummer van de student.
+     *
      * @return studentnummer van de student
      */
     public int getStudentnummer() {
         return studentnummer;
     }
+
     /**
-     * Getter voor de studierichting van de student.
+     * Publieke Getter voor de studierichting van de student.
      * @return studierichting van student.
      */
     public String getStudierichting() {
         return studierichting;
     }
+
     /**
-     * Setter voor het studentnummer van de student
+     * Publieke Setter voor het studentnummer van de student
      * @param studentnummer van de student.
      */
     public void setStudentnummer(int studentnummer) {
         this.studentnummer = studentnummer;
     }
+
     /**
-     * setter voor de studierichting van de student.
+     * Publieke setter voor de studierichting van de student.
      * @param studierichting van de student.
      */
     public void setStudierichting(String studierichting) {

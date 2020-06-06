@@ -25,7 +25,7 @@ public class Datum {
 		bestaatDatum(dag, maand, jaar);
 	}
 	/**
-	 * parameter-loze constructor van de klasse Datum.
+	 * Parameter-loze constructor van de klasse Datum.
 	 */
 	public Datum() {
 		dag = 0;
@@ -33,53 +33,53 @@ public class Datum {
 		jaar = 0;
 	}
 	/**
-	 * Setter voor de dag.
+	 * Publieke Setter voor de dag.
 	 * @param dag de dag.
 	 */
 	public void setDag(int dag) {
 		this.dag = dag;
 	}
 	/**
-	 * Setter voor de maand.
+	 * Publieke Setter voor de maand.
 	 * @param maand	de maand
 	 */
 	public void setMaand(int maand) {
 		this.maand = maand;
 	}
 	/**
-	 * Setter voor het jaar.
+	 * Publieke Setter voor het jaar.
 	 * @param jaar het jaar.
 	 */
 	public void setJaar(int jaar) {
 		this.jaar = jaar;
 	}
 	/**
-	 * Getter voor de dag.
+	 * Publieke Getter voor de dag.
 	 * @return de dag.
 	 */
 	public int getDag() {
 		return dag;
 	}
 	/**
-	 * Getter voor de maand.
+	 * Publieke Getter voor de maand.
 	 * @return de maand.
 	 */
 	public int getMaand() {
 		return maand;
 	}
 	/**
-	 * Getter voor het jaar.
+	 * Publieke Getter voor het jaar.
 	 * @return het jaar.
 	 */
 	public int getJaar() {
 		return jaar;
 	}
 	/**
-	 * Controle of de datum bestaat.
+	 * Publieke methode om te controleren of de datum bestaat.
 	 * @param dag de dag.
 	 * @param maand	de maand.
 	 * @param jaar	het jaar.
-	 * @return of de datum valide is.
+	 * @return boolean true, bij valide datum, anders false.
 	 */
 	public boolean bestaatDatum(int dag, int maand, int jaar) {
 		controleDatum();
@@ -87,7 +87,7 @@ public class Datum {
 	}
 
 	/**
-	 * Getter voor Sting weergave van datum.
+	 * Publieke Getter voor String weergave van datum.
 	 *
 	 * @return Geboortedatum.
 	 */
@@ -96,6 +96,7 @@ public class Datum {
 		return strDatum;
 	}
 	/**
+	 * Publieke methode om de datum te controleren.
 	 * Controleert of de datum valide is.
 	 */
 	public void controleDatum() {

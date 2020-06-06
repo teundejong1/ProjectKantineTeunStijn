@@ -10,8 +10,8 @@ public class Administratie {
     }
 
     /**
-     * Deze methode berekent van de int array aantal de gemiddelde waarde
-     * @param aantal
+     * Deze publieke methode berekent van de int array aantal de gemiddelde waarde
+     * @param aantal de int array
      * @return het gemiddelde
      */
     public static double berekenGemiddeldAantal(int[] aantal) {
@@ -28,7 +28,7 @@ public class Administratie {
     }
 
     /**
-     * Deze methode berekent van de double array omzet de gemiddelde waarde
+     * Deze publieke methode berekent van de double array omzet de gemiddelde waarde
      * @param omzet gemiddelde van de week
      * @return het gemiddelde
      */
@@ -45,7 +45,7 @@ public class Administratie {
     }
 
     /**
-     * Methode om dagomzet uit te rekenen
+     * Publieke methode om dagomzet uit te rekenen
      * @param omzet van de dagen
      * @return array (7 elementen) met dagomzetten
      */

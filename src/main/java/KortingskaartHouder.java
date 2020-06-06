@@ -1,17 +1,17 @@
-public interface KortingskaartHouder {
+public interface KortingskaartHouder { //Interface
 
     /**
-     * Methode om kortingspercentage op te vragen
+     * Publieke Methode om kortingspercentage op te vragen
      */
-    public double geefKortingsPercentage();
+    double geefKortingsPercentage();
 
     /**
-     * Methode om op te vragen of er maximum per keer aan de korting zit
+     * Publieke Methode om op te vragen of er maximum per keer aan de korting zit
      */
-    public boolean heeftMaximum();
+    boolean heeftMaximum();
 
     /**
-     * Methode om het maximum kortingsbedrag op te vragen
+     * Publieke Methode om het maximum kortingsbedrag op te vragen
      */
-    public double geefMaximum();
+   double geefMaximum();
 }

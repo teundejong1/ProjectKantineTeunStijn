@@ -11,6 +11,7 @@ public class Persoon {
     private String achternaam;
     private Datum geboortedatum;
     private char geslacht;
+    private Betaalwijze betaalwijze;
 
     /**
      * Constructor van de klasse Persoon.
@@ -20,7 +21,6 @@ public class Persoon {
      * @param geboortedatum van de klant.
      * @param geslacht van de klant.
      */
-
     public Persoon(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht) {
         setBsn(bsn);
         setVoornaam(voornaam);
@@ -33,25 +33,23 @@ public class Persoon {
         }
     }
     /**
-     * parameter-loze constructor van de klasse Datum.
+     * parameter-loze constructor van de klasse Persoon.
      */
-    public Persoon(){
+    public Persoon() {
         bsn = 0;
-        voornaam = "voornaam";
-        achternaam = "achternaam";
+        voornaam = "Kim";
+        achternaam = "Kardashian";
         geboortedatum = new Datum();
         geslacht = 'o';
-
-
     }
     /**
-     * Getter voor het geslacht van de persoon.
+     * publieke Getter voor het geslacht van de persoon.
      * @return geslacht van persoon, type String.
      */
 
     public String getGeslacht () {
 
-        if (checkGeslacht(geslacht)) {
+        if (checkGeslacht(geslacht)) { //Check geslacht
             String strGeslacht = String.valueOf(geslacht);
             strGeslacht = strGeslacht.toUpperCase();
             if (Objects.equals(strGeslacht, "M")) {
@@ -68,7 +66,7 @@ public class Persoon {
     }
 
     /**
-     * Setter voor bsn nummer.
+     * publieke Setter voor bsn nummer.
      * @param bsn bsn nummer, type int.
      */
     public void setBsn ( int bsn){
@@ -76,7 +74,7 @@ public class Persoon {
     }
 
     /**
-     * Setter voor voornaam.
+     * Publieke Setter voor voornaam.
      * @param voornaam voornaam van persoon, type String.
      */
     public void setVoornaam (String voornaam){
@@ -84,7 +82,7 @@ public class Persoon {
     }
 
     /**
-     * Setter voor achternaam.
+     * Publieke Setter voor achternaam.
      * @param achternaam achternaam van persoon, type String.
      */
     public void setAchternaam (String achternaam){
@@ -92,7 +90,7 @@ public class Persoon {
     }
 
     /**
-     * Setter voor geboortedatum.
+     * Publieke Setter voor geboortedatum.
      * @param geboortedatum geboortedatum van persoon, type Datum.
      */
     public void setGeboortedatum (Datum geboortedatum){
@@ -100,7 +98,7 @@ public class Persoon {
     }
 
     /**
-     * Setter voor het geslacht.
+     * Publieke Setter voor het geslacht.
      * @param geslacht geslacht van persoon, type char.
      */
     public void setGeslacht ( char geslacht){
@@ -109,6 +107,7 @@ public class Persoon {
     }
 
     /**
+     * Private methode.
      * Controleerd of het geslacht bestaat.
      * @param geslacht geslacht van persoon, type char.
      * @return true als geldig geslacht, anders false.
@@ -132,7 +131,7 @@ public class Persoon {
     }
 
     /**
-     * Getter voor bsn van de persoon.
+     * Publieke Getter voor bsn van de persoon.
      * @return bsn nummer, type int.
      */
     public int getBsn() {
@@ -140,7 +139,7 @@ public class Persoon {
     }
 
     /**
-     * Getter voor de voornaam van de persoon.
+     * Publieke Getter voor de voornaam van de persoon.
      * @return voornaam persoon, type String.
      */
     public String getVoornaam() {
@@ -148,7 +147,7 @@ public class Persoon {
     }
 
     /**
-     * Getter voor de achternaam van de persoon.
+     * Publieke Getter voor de achternaam van de persoon.
      * @return achternaam persoon, type String.
      */
     public String getAchternaam() {
@@ -156,7 +155,7 @@ public class Persoon {
     }
 
     /**
-     * Getter voor geboortedatum van de persoon, met controle of datum bekend is.
+     * Publieke Getter voor geboortedatum van de persoon, met controle of datum bekend is.
      * @return geboortedatum persoon, type Datum.
      */
     public String getGeboortedatum() {
@@ -166,27 +165,37 @@ public class Persoon {
          return geboortedatum.getDatumAsString();
     }
 
-//    /**
-//     * omzetten van alle gegevens van een persoon in een String.
-//     * @return String met bsn nummer, voornaam, achternaam, geboortedatum en geslacht.
-//     */
-//    @Override
-//    public String toString(){//overriding the toString() method
-//        return bsn+" "+voornaam + " " +achternaam + " " + geboortedatum + " " + geslacht;
-//    }
+
     /**
-     * was deze?
+     * Publieke toString methode
+     * @return student, als instantie van student
+     * docent, als instantie van docent
+     * kantinemedewerker, als geen student of docent.
      */
     @Override
     public String toString() {
         if (this instanceof Student) {
             return "Student";
-        }
-        else if (this instanceof Docent) {
+        } else if (this instanceof Docent) {
             return "Docent";
-        }
-        else {
+        } else {
             return "Kantine Medewerker";
         }
+    }
+
+    /**
+     *Publieke methode om de betaalwijze op te vragen.
+     * @return betaalwijze, type betaalwijze.
+     */
+    public Betaalwijze getBetaalwijze() {
+        return betaalwijze;
+    }
+
+    /**
+     *Publieke methode om de betaalwijze te setten.
+     * @param betaalwijze van het type betaalwijze.
+     */
+    public void setBetaalwijze(Betaalwijze betaalwijze) {
+        this.betaalwijze = betaalwijze;
     }
 }

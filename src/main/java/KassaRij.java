@@ -12,10 +12,11 @@ public class KassaRij {
      * Constructor voor de klasse KassaRij.
      */
     public KassaRij() {
-        klantRij = new LinkedList<Dienblad>();
+        klantRij = new LinkedList<>();
     }
 
     /**
+     * Publieke methode.
      * Persoon sluit achter in de rij aan.
      * @param klant Dienblad van de klant.
      */
@@ -25,22 +26,22 @@ public class KassaRij {
 
 
     /**
-     * Methode die kijkt of er een rij bestaat, de eerste Klant uit de rij verwijderen en retourneren. Als er
+     * Publieke Methode die kijkt of er een rij bestaat, de eerste Klant uit de rij verwijderen en retourneren. Als er
      * niemand in de rij staat geeft deze null terug.
      * @return Eerste Klant in de rij (type Dienblad) of null
      */
     public Dienblad eerstePersoonInRij() {
-        if(klantRij.isEmpty()){
+        if(klantRij.isEmpty()){ //Wanneer er geen rij is.
             System.out.println("er is geen rij");
             return null;
         }else{
-            Dienblad voorstePersoon = klantRij.get(0); //even kijken naar remove
+            Dienblad voorstePersoon = klantRij.get(0); //Anders pak de voorste persoon in de rij.
             klantRij.remove(0);
             return voorstePersoon;
         }
     }
     /**
-     * Methode kijkt of er personen in de rij staan.
+     * Publieke Methode kijkt of er personen in de rij staan.
      * @return true als er een rij bestaat, anders false.
      */
     public boolean erIsEenRij() {

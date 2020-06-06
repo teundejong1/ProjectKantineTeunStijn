@@ -15,7 +15,7 @@ public class Dienblad {
      * Constructor van de objecten van klasse Dienblad.
      */
     public Dienblad() {
-        artikelen = new Stack<Artikel>();
+        artikelen = new Stack<>();
     }
 
     /**
@@ -24,18 +24,18 @@ public class Dienblad {
      */
     public Dienblad(Persoon klant) {
         this.klant = klant;
-        artikelen = new Stack<Artikel>();
+        artikelen = new Stack<>();
     }
 
     /**
-     * Getter voor klant.
+     * Publieke Getter voor klant.
      * @return de klant
      */
     public Persoon getKlant() {
         return this.klant;
     }
     /**
-     * Setter voor klant.
+     * Publieke Setter voor klant.
      * @param klant van het type Persoon.
      */
     public void setKlant(Persoon klant) {
@@ -43,7 +43,7 @@ public class Dienblad {
     }
 
     /**
-     * Methode om artikel aan dienblad toe te voegen.
+     * Publieke Methode om artikel aan dienblad toe te voegen.
      *
      * @param artikel naam van artikel.
      */
@@ -52,7 +52,7 @@ public class Dienblad {
     }
 
     /**
-     * Iterator loopt door de artikelen heen.
+     * Publieke Iterator, loopt door de artikelen heen.
      * @return de iterator van artikelen.
      */
     public Iterator<Artikel> artikelIterator() {
