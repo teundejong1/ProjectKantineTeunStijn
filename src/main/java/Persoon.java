@@ -37,8 +37,8 @@ public class Persoon {
      */
     public Persoon() {
         bsn = 0;
-        voornaam = "Kim";
-        achternaam = "Kardashian";
+        voornaam = "";
+        achternaam = "";
         geboortedatum = new Datum();
         geslacht = 'o';
     }

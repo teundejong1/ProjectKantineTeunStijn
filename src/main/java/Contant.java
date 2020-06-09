@@ -11,6 +11,8 @@ public class Contant extends Betaalwijze {
      * @param tebetalen van het type double.
      * @throws TeWeinigGeldException regelt wanneer betalingen niet lukken.
      */
+
+
     public void betaal(double tebetalen) throws TeWeinigGeldException {
         if (tebetalen <= saldo) {
             saldo = -tebetalen;

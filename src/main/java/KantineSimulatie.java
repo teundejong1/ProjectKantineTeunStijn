@@ -41,7 +41,12 @@ public class KantineSimulatie {
     int aantalDocenten = 0;
     int aantalKantineMedewerkers = 0;
     int aantalRandomPersonen;
-
+    char geslacht;
+    private static final String[] voornamenM =  new String []{"George", "Paul", "John", "Ringo"};
+    private static final String[] voornamenV =  new String []{"Lady", "Alicia", "Katy", "Stevie"};
+    private static final String[] achternamen =  new String []{"Harrison", "Mc Cartney", "Lennon", "Knicks", "GaGa", "Keys", "Perry", "Starr"};
+    private String voornaam;
+    private String achternaam;
 
     // ArrayList klanten
     private ArrayList<Persoon> klanten = new ArrayList<>();
@@ -177,12 +182,23 @@ public class KantineSimulatie {
             // laat de personen maar komen...
 
             for (int j = 1; j <= aantalpersonen; j++) {
+                int randomGeslacht = getRandomValue(0, 1);
+                if (randomGeslacht == 0) {
+                    geslacht = 'M';
+                    voornaam = voornamenM[getRandomValue(0, voornamenM.length-1)];
+                }
+                    else {
+                         geslacht = 'V';
+                         voornaam = voornamenV[getRandomValue(0, voornamenM.length-1)];
+                    }
+
                 if (j <= aantalKantineMedewerkers) {
-                    klanten.add(new KantineMedewerker());
+
+                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 3), geslacht, 1, false));
                 } else if (j <= aantalKantineMedewerkers + aantalDocenten) {
-                    klanten.add(new Docent());
+                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 3), geslacht, "Docent", "ICT"));
                 } else if (j <= aantalDocenten + aantalStudenten + aantalKantineMedewerkers) {
-                    klanten.add(new Student());
+                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 3), geslacht, 12345, "ICT"));
                 }
             }
 

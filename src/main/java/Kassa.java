@@ -70,6 +70,7 @@ public class Kassa {
                     kortings = kortingsBedrag; //sla korting op.
                 }
             }
+
             klant.getKlant().getBetaalwijze().betaal(bedragVanKlant); //betaling van de klant
             this.hoeveelheidKassa += bedragVanKlant; //betaling optellen bij de kassa
             String stringKorting = String.valueOf(rondAf(kortings)); // korting in een String zetten
@@ -86,6 +87,7 @@ public class Kassa {
             //naamBetaler = klant.getKlant().getVoornaam() + " - " + klant.getKlant().getAchternaam() + " "; //Sla de naam van de betaler op.
             naamBetaler = klant.getKlant().getAchternaam() + ", " + klant.getKlant().getVoornaam() + " - ";
             System.out.println(naamBetaler + "is het niet gelukt om te betalen"); //print de naam van de betaler + heeft niet betaald.
+            
         } finally { // Voer dit stuk altijd uit.
             System.out.println("Einde transactie");
         }

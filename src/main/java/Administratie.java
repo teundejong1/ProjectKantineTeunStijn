@@ -65,6 +65,4 @@ public class Administratie {
         }
         return temp;
     }
-
-
 }
