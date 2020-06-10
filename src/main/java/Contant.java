@@ -1,5 +1,5 @@
 /**
- * class Concant - Deze klasse die Betaalwijze extend, regelt contante betalingen.
+ * class Contant Deze klasse die Betaalwijze extend, regelt contante betalingen.
  *
  * @author Teun de Jong en Stijn Wolthuis.
  * @version 06/06/2020.
@@ -11,8 +11,6 @@ public class Contant extends Betaalwijze {
      * @param tebetalen van het type double.
      * @throws TeWeinigGeldException regelt wanneer betalingen niet lukken.
      */
-
-
     public void betaal(double tebetalen) throws TeWeinigGeldException {
         if (tebetalen <= saldo) {
             saldo = -tebetalen;

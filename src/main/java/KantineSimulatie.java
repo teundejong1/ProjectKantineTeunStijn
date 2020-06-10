@@ -46,7 +46,6 @@ public class KantineSimulatie {
     private static final String[] voornamenV =  new String []{"Lady", "Alicia", "Katy", "Stevie"};
     private static final String[] achternamen =  new String []{"Harrison", "Mc Cartney", "Lennon", "Knicks", "GaGa", "Keys", "Perry", "Starr"};
     private String voornaam;
-    private String achternaam;
 
     // ArrayList klanten
     private ArrayList<Persoon> klanten = new ArrayList<>();

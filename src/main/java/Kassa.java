@@ -84,8 +84,7 @@ public class Kassa {
             afgerekendeArtikelen += artOpDienblad; //Hou afgerekende artikelen bij.
             System.out.println("Betaling geslaagd");
         } catch (TeWeinigGeldException teWeinigGeldException) { //Bij een niet gelukte betaling
-            //naamBetaler = klant.getKlant().getVoornaam() + " - " + klant.getKlant().getAchternaam() + " "; //Sla de naam van de betaler op.
-            naamBetaler = klant.getKlant().getAchternaam() + ", " + klant.getKlant().getVoornaam() + " - ";
+            naamBetaler = klant.getKlant().getAchternaam() + ", " + klant.getKlant().getVoornaam() + " - "; //sla de naam van de betaler op
             System.out.println(naamBetaler + "is het niet gelukt om te betalen"); //print de naam van de betaler + heeft niet betaald.
             
         } finally { // Voer dit stuk altijd uit.

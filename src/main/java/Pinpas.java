@@ -1,6 +1,12 @@
+/**
+ * class Pinpas - Deze klasse die Betaalwijze extend, regelt betalingen met de pinpas.
+ *
+ * @author Teun de Jong en Stijn Wolthuis.
+ * @version 06/06/2020.
+ */
 public class Pinpas extends Betaalwijze {
 
-    private double kredietlimiet; //zet kredietlimiet op 500.
+    private double kredietlimiet; //zet kredietlimiet
 
     /**
      * constructor voor Pinpas
@@ -21,6 +27,7 @@ public class Pinpas extends Betaalwijze {
     /**
      * Publieke Methode om betaling af te handelen
      * @throws TeWeinigGeldException wanneer het niet lukt.
+     * @param tebetalen, type double.
      */
     public void betaal(double tebetalen) throws TeWeinigGeldException {
         if (tebetalen > kredietlimiet) {
