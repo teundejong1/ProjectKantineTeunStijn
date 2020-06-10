@@ -194,11 +194,11 @@ public class KantineSimulatie {
 
                 if (j <= aantalKantineMedewerkers) {
 
-                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 3), geslacht, 1, false));
+                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 1990), geslacht, 1, false)); // nieuwe random kantinemedewerker
                 } else if (j <= aantalKantineMedewerkers + aantalDocenten) {
-                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 3), geslacht, "Docent", "ICT"));
+                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(3, 4, 1989), geslacht, "Docent", "ICT")); //nieuwe random docent
                 } else if (j <= aantalDocenten + aantalStudenten + aantalKantineMedewerkers) {
-                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 3), geslacht, 12345, "ICT"));
+                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(5, 6, 1988), geslacht, 12345, "ICT")); //nieuwe random student
                 }
             }
 
@@ -209,13 +209,13 @@ public class KantineSimulatie {
                         aantalartikelen, 0, AANTAL_ARTIKELEN - 1);
                 String[] artikelen = geefArtikelNamen(tepakken);
                 kantine.loopPakSluitAan(dienblad, artikelen);
-                int randomBetaalWijze = getRandomValue(0, 1);
+                int randomBetaalWijze = getRandomValue(0, 1); //random betaalwijze
                 if (randomBetaalWijze == 0) {
                     klant.setBetaalwijze(new Contant());
-                    klant.getBetaalwijze().setSaldo(getRandomValue(0, 50));
+                    klant.getBetaalwijze().setSaldo(getRandomValue(0, 50)); //random contant geld
                 } else if (randomBetaalWijze == 1) {
-                    klant.setBetaalwijze(new Pinpas());
-                    klant.getBetaalwijze().setSaldo(getRandomValue(0, 250));
+                    klant.setBetaalwijze(new Pinpas(getRandomValue(0, 500))); //random kredietlimiet
+                    klant.getBetaalwijze().setSaldo(getRandomValue(0, 250)); //random saldo
                 }
 
 

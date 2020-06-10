@@ -1,6 +1,14 @@
 public class Pinpas extends Betaalwijze {
 
-    private double kredietlimiet = 500; //zet kredietlimiet op 500.
+    private double kredietlimiet; //zet kredietlimiet op 500.
+
+    /**
+     * constructor voor Pinpas
+     * @param kredietlimiet type double
+     */
+    public Pinpas(double kredietlimiet){
+        this.kredietlimiet = kredietlimiet;
+    }
 
     /**
      * Publieke Methode om kredietlimiet te zetten
