@@ -10,14 +10,16 @@ public class Pinpas extends Betaalwijze {
 
     /**
      * constructor voor Pinpas
+     *
      * @param kredietlimiet type double
      */
-    public Pinpas(double kredietlimiet){
+    public Pinpas(double kredietlimiet) {
         this.kredietlimiet = kredietlimiet;
     }
 
     /**
      * Publieke Methode om kredietlimiet te zetten
+     *
      * @param kredietlimiet van het type double.
      */
     public void setKredietLimiet(double kredietlimiet) {
@@ -26,8 +28,9 @@ public class Pinpas extends Betaalwijze {
 
     /**
      * Publieke Methode om betaling af te handelen
-     * @throws TeWeinigGeldException wanneer het niet lukt.
+     *
      * @param tebetalen, type double.
+     * @throws TeWeinigGeldException wanneer het niet lukt.
      */
     public void betaal(double tebetalen) throws TeWeinigGeldException {
         if (tebetalen > kredietlimiet) {

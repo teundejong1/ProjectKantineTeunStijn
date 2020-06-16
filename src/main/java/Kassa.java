@@ -1,4 +1,3 @@
-
 import java.util.Iterator;
 
 public class Kassa {
@@ -42,7 +41,7 @@ public class Kassa {
         System.out.println((klant.getKlant().toString()));
         System.out.println((" "));
         System.out.println((klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam()));
-        System.out.println("Manier van betalen: " + (klant.getKlant().getBetaalwijze().toString() ));
+        System.out.println("Manier van betalen: " + (klant.getKlant().getBetaalwijze().toString()));
         System.out.println((" "));
 
         Iterator<Artikel> itr = klant.artikelIterator();
@@ -51,11 +50,10 @@ public class Kassa {
             if (volgendeArtikel.getKorting() > 0) {
                 kortingsbedrag += volgendeArtikel.getKorting();
 
-            }
-            else if (volgendeArtikel.getKorting() == 0){
+            } else if (volgendeArtikel.getKorting() == 0) {
                 bedragVanKlant += volgendeArtikel.getPrijs();
             }
-            System.out.println((volgendeArtikel.getNaam() +" : " + volgendeArtikel.getPrijs()));
+            System.out.println((volgendeArtikel.getNaam() + " : " + volgendeArtikel.getPrijs()));
 
             subtotaal += volgendeArtikel.getPrijs();
 
@@ -66,7 +64,7 @@ public class Kassa {
 
         try {
 
-            System.out.println(( "+"));
+            System.out.println(("+"));
             System.out.println((("Te betalen voor korting: €" + rondAf(subtotaal))));
 
             // bereken de korting voor de klant mits zij KortingskaartHouder zijn
@@ -88,17 +86,17 @@ public class Kassa {
                     bedragVanKlant -= korting;
                 }
 
-                System.out.println(("Kortingskaartkorting: €" + rondAf(korting)));
-                System.out.println(("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag)));
-                System.out.println(("Totale korting      : €" + rondAf(korting + kortingsbedrag)));
-                System.out.println(("-"));
+                System.out.println("Kortingskaartkorting: €" + rondAf(korting));
+                System.out.println("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag));
+                System.out.println("Totale korting      : €" + rondAf(korting + kortingsbedrag));
+                System.out.println("-");
                 naKorting = subtotaal - (korting + kortingsbedrag);
-                System.out.println(("Na korting: €" + rondAf(naKorting)));
+                System.out.println("Na korting: €" + rondAf(naKorting));
             } else {
                 naKorting = subtotaal - kortingsbedrag;
-                System.out.println(("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag)));
-                System.out.println((" "));
-                System.out.println(("Na korting: €" + rondAf(bedragVanKlant)));
+                System.out.println("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag));
+                System.out.println(" ");
+                System.out.println("Na korting: €" + rondAf(bedragVanKlant));
             }
 
             // Het reken gedeelte van de kassa
@@ -107,23 +105,23 @@ public class Kassa {
             this.totalBalance += bedragVanKlant;
             totaalAfgerekendeArtikelen += artOpDienblad;
 
-            System.out.println(("Aantal artikelen: " + artOpDienblad));
-            System.out.println((" "));
-            System.out.println(("Saldo voor betaling: €" + rondAf(saldoVoor)));
-            System.out.println(("Saldo na betaling €" + rondAf(klant.getKlant().getBetaalwijze().getSaldo())));
+            System.out.println("Aantal artikelen: " + artOpDienblad);
+            System.out.println(" ");
+            System.out.println("Saldo voor betaling: €" + rondAf(saldoVoor));
+            System.out.println("Saldo na betaling €" + rondAf(klant.getKlant().getBetaalwijze().getSaldo()));
             System.out.println("Administratie: ");
-            System.out.println((" "));
-            System.out.println(("Subtotaal Afgerekende Artikelen: " + totaalAfgerekendeArtikelen));
-            System.out.println(("Subtotaal gepasseerde artikelen: " + passedItems));
-            System.out.println(("Dagtotaal: €" + rondAf(totalBalance)));
+            System.out.println(" ");
+            System.out.println("Subtotaal Afgerekende Artikelen: " + totaalAfgerekendeArtikelen);
+            System.out.println("Subtotaal gepasseerde artikelen: " + passedItems);
+            System.out.println("Dagtotaal: €" + rondAf(totalBalance));
 
         } catch (TeWeinigGeldException e) {
-            System.out.println((klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam() + " kon niet betalen."));
+            System.out.println(klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam() + " kon niet betalen.");
 
         } finally {
 
-            System.out.println((" "));
-            System.out.println(("Einde transactie"));
+            System.out.println(" ");
+            System.out.println("Einde transactie");
             System.out.println("#######################");
             System.out.println(" ");
             System.out.println("---------------------------------");
@@ -175,8 +173,6 @@ public class Kassa {
     private double rondAf(double getal) {
         return Math.round(getal * 100.0) / 100.0;
     }
-
-
 
 
 }

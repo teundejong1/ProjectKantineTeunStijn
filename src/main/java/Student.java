@@ -1,19 +1,22 @@
 /**
  * class Student - Deze klasse is voor de klant student.
+ *
  * @author Teun de Jong en Stijn Wolthuis.
  * @version 03/06/2020.
  */
 public class Student extends Persoon {
     private int studentnummer;
     private String studierichting;
+
     /**
      * Constructor van de klasse student.
-     * @param bsn van de student.
-     * @param voornaam van de student.
-     * @param achternaam van de student.
-     * @param geboortedatum van de student.
-     * @param geslacht van de student.
-     * @param studentnummer van de student
+     *
+     * @param bsn            van de student.
+     * @param voornaam       van de student.
+     * @param achternaam     van de student.
+     * @param geboortedatum  van de student.
+     * @param geslacht       van de student.
+     * @param studentnummer  van de student
      * @param studierichting van de student.
      */
     public Student(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht, int studentnummer, String studierichting) {
@@ -38,15 +41,8 @@ public class Student extends Persoon {
     }
 
     /**
-     * Publieke Getter voor de studierichting van de student.
-     * @return studierichting van student.
-     */
-    public String getStudierichting() {
-        return studierichting;
-    }
-
-    /**
      * Publieke Setter voor het studentnummer van de student
+     *
      * @param studentnummer van de student.
      */
     public void setStudentnummer(int studentnummer) {
@@ -54,7 +50,17 @@ public class Student extends Persoon {
     }
 
     /**
+     * Publieke Getter voor de studierichting van de student.
+     *
+     * @return studierichting van student.
+     */
+    public String getStudierichting() {
+        return studierichting;
+    }
+
+    /**
      * Publieke setter voor de studierichting van de student.
+     *
      * @param studierichting van de student.
      */
     public void setStudierichting(String studierichting) {

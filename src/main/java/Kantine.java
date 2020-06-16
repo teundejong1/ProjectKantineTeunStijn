@@ -12,26 +12,29 @@ public class Kantine {
 
     /**
      * Constructor voor de klasse Kantine.
-     * */
+     */
     public Kantine() {
         kassarij = new KassaRij();
         kassa = new Kassa(kassarij);
     }
+
     /**
      * Publieke Methode voor het pakken van artikelen op het dienblad en vervolgens achteraan sluiten bij de kassarij.
-     * @param dienblad dienblad van de persoon.
+     *
+     * @param dienblad     dienblad van de persoon.
      * @param artikelnamen namen van de artikelen op het dienblad.
      */
     public void loopPakSluitAan(Dienblad dienblad, String[] artikelnamen) {
-        for (int i =0; i <= artikelnamen.length-1; i++) {
+        for (int i = 0; i <= artikelnamen.length - 1; i++) {
             dienblad.voegToe(kantineAanbod.getArtikel(artikelnamen[i])); // Voeg artikelen toe aan het dienblad.
         }
-            kassarij.sluitAchteraan(dienblad);
+        kassarij.sluitAchteraan(dienblad);
     }
 
 
     /**
      * Publieke getter voor de klasse kassa
+     *
      * @return kassa van het type kassa.
      */
     public Kassa getKassa() {
@@ -50,8 +53,10 @@ public class Kantine {
             }
         }
     }
+
     /**
      * Publieke Getter om het aanbod van de kantine op te halen.
+     *
      * @return het huidige kantineaanbod.
      */
     public KantineAanbod getKantineAanbod() {
@@ -60,6 +65,7 @@ public class Kantine {
 
     /**
      * Publieke Setter voor de artikelen die de kantine aanbied.
+     *
      * @param kantineAanbod het huidige kantineaanbod.
      */
     public void setKantineAanbod(KantineAanbod kantineAanbod) {

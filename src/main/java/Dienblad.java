@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.Stack;
+
 /**
  * class Dienblad - Deze klasse houdt alle artikelen bij van een klant die op het dienblad staan.
  *
@@ -8,8 +9,8 @@ import java.util.Stack;
  */
 
 public class Dienblad {
-    private Stack<Artikel> artikelen;
     public Persoon klant;
+    private Stack<Artikel> artikelen;
 
     /**
      * Constructor van de objecten van klasse Dienblad.
@@ -20,6 +21,7 @@ public class Dienblad {
 
     /**
      * Constructor van de objecten van klasse Dienblad.
+     *
      * @param klant van het type Persoon
      */
     public Dienblad(Persoon klant) {
@@ -29,13 +31,16 @@ public class Dienblad {
 
     /**
      * Publieke Getter voor klant.
+     *
      * @return de klant
      */
     public Persoon getKlant() {
         return this.klant;
     }
+
     /**
      * Publieke Setter voor klant.
+     *
      * @param klant van het type Persoon.
      */
     public void setKlant(Persoon klant) {
@@ -53,6 +58,7 @@ public class Dienblad {
 
     /**
      * Publieke Iterator, loopt door de artikelen heen.
+     *
      * @return de iterator van artikelen.
      */
     public Iterator<Artikel> artikelIterator() {

@@ -9,23 +9,16 @@ public abstract class Betaalwijze {
     protected double saldo;
 
     /**
-     * Publieke Methode om krediet te initialiseren
-     *
-     * @param saldo die gezet wordt, type double.
-     */
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    /**
      * Publieke Methode om betaling af te handelen
-     * @throws TeWeinigGeldException wanneer er niet genoeg saldo is.
+     *
      * @param tebetalen het te betalen bedrag, type double.
+     * @throws TeWeinigGeldException wanneer er niet genoeg saldo is.
      */
     public abstract void betaal(double tebetalen) throws TeWeinigGeldException;
 
     /**
      * Publieke toString methode.
+     *
      * @return contant, wanneer er een instantie van contant is, anders Pinpas.
      */
     public String toString() {
@@ -36,7 +29,16 @@ public abstract class Betaalwijze {
         }
     }
 
-    public double getSaldo(){
+    public double getSaldo() {
         return saldo;
+    }
+
+    /**
+     * Publieke Methode om krediet te initialiseren
+     *
+     * @param saldo die gezet wordt, type double.
+     */
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 }

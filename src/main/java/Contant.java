@@ -8,6 +8,7 @@ public class Contant extends Betaalwijze {
 
     /**
      * Deze publieke methode betaal regelt contante betalingen.
+     *
      * @param tebetalen van het type double.
      * @throws TeWeinigGeldException regelt wanneer betalingen niet lukken.
      */

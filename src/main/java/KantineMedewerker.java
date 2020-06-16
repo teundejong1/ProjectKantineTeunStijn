@@ -43,6 +43,7 @@ public class KantineMedewerker extends Persoon implements KortingskaartHouder {
 
     /**
      * Publieke setter voor medewerkersnummer van de medewerker.
+     *
      * @param medewerkersnummer van de medewerker.
      */
     public void setMedewerkersnummer(int medewerkersnummer) {
@@ -51,6 +52,7 @@ public class KantineMedewerker extends Persoon implements KortingskaartHouder {
 
     /**
      * Publieke Getter voor bevoegdheid van de medewerker.
+     *
      * @return bevoegdheid van de medewerker
      */
     public boolean isToestaanKasasa() {
@@ -68,6 +70,7 @@ public class KantineMedewerker extends Persoon implements KortingskaartHouder {
 
     /**
      * Deze methode geeft het kortingspercentage van de klasse docent terug.
+     *
      * @return 0.35
      */
     @Override
@@ -77,6 +80,7 @@ public class KantineMedewerker extends Persoon implements KortingskaartHouder {
 
     /**
      * Deze methode checkt of er een maximum is.
+     *
      * @return een boolean true wanneer er een maximum is.
      */
     @Override
@@ -86,6 +90,7 @@ public class KantineMedewerker extends Persoon implements KortingskaartHouder {
 
     /**
      * Deze methode geeft de maximale korting terug.
+     *
      * @return het maximum, 0.
      */
     @Override
