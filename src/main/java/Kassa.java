@@ -20,11 +20,9 @@ public class Kassa {
     }
 
     /**
-     * Vraag het aantal artikelen en de totaalprijs op. Tel deze gegevens op bij de controletotalen
-     * die voor de kassa worden bijgehouden. De implementatie wordt later vervangen door een echte
-     * betaling door de persoon.
-     *
-     * @param klant die moet afrekenen
+     * Publieke methode om af te rekenen met klanten
+     * Wordt ook een nette bon geprint.
+     * @param klant die moet afrekenen, type Dienblad
      */
 
     public void rekenAf(Dienblad klant) throws TeWeinigGeldException {
@@ -96,7 +94,7 @@ public class Kassa {
                 naKorting = subtotaal - kortingsbedrag;
                 System.out.println("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag));
                 System.out.println(" ");
-                System.out.println("Na korting: €" + rondAf(bedragVanKlant));
+                System.out.println("Na korting: €" + rondAf(naKorting));
             }
 
             // Het reken gedeelte van de kassa
@@ -168,7 +166,7 @@ public class Kassa {
 
     /**
      * @param getal een double waarde
-     * @return hetzelfde getal afgerond op twee decimalen
+     * @return afgeronde waarde.
      */
     private double rondAf(double getal) {
         return Math.round(getal * 100.0) / 100.0;
