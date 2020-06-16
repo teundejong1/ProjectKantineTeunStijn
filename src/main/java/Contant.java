@@ -13,7 +13,7 @@ public class Contant extends Betaalwijze {
      */
     public void betaal(double tebetalen) throws TeWeinigGeldException {
         if (tebetalen <= saldo) {
-            saldo = -tebetalen;
+            saldo -= tebetalen;
         } else if (tebetalen > saldo) {
             throw new TeWeinigGeldException("Contant betalen niet gelukt, onvoldoende geld!");
         } else {

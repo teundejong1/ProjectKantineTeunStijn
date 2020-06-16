@@ -8,20 +8,32 @@
 public class Artikel {
     private String naam;
     private double prijs;
+    private double korting;
 
     /**
      * Constructor van de klasse Artikel.
      */
     public Artikel(String naam, double prijs) {
-        setNaam(naam);
-        setPrijs(prijs);
+        this.naam = naam;
+        this.prijs = prijs;
+        korting = 0;
 }
+
+    /**
+     * Constructor van de klasse Artikel met korting.
+     */
+    public Artikel(String naam, double prijs, double korting){
+        this.naam = naam;
+        this.prijs = prijs;
+        this.korting = korting;
+    }
     /**
      * parameter-loze constructor van de klasse Artikel.
      */
     public Artikel() {
         naam = "Nader te bepalen naam";
         prijs = 0;
+        korting = 0;
     }
     /**
      * Publieke Getter voor de naam van het artikel.
@@ -57,5 +69,21 @@ public class Artikel {
      */
      public String toString(){//overriding the toString() method
         return naam+" "+prijs;
+    }
+
+    /**
+     * Publieke methode die de korting van een Artikel ophaalt
+     * @return korting, type int.
+     */
+    public double getKorting() {
+        return korting;
+    }
+
+    /**
+     * Publieke methode die de korting van een Artikel zet.
+     * @param korting, type int.
+     */
+    public void setKorting(double korting) {
+        this.korting = korting;
     }
 }

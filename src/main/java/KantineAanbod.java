@@ -8,9 +8,10 @@ import java.util.HashMap;
  */
 public class KantineAanbod {
     // interne opslag voorraad
-    private HashMap<String, ArrayList<Artikel>> aanbod;
+    public HashMap<String, ArrayList<Artikel>> aanbod; //protected
     private HashMap<String, Integer> startVoorraad;
     private HashMap<String, Double> prijzen;
+
 
     /**
      * Constructor voor de klasse KantineAanbod.
@@ -51,9 +52,9 @@ public class KantineAanbod {
      * Private methode om de lijst van artikelen te krijgen op basis van de naam van het artikel.
      * @return artikel, of als het artikel niet bestaat null.
      */
-    private ArrayList<Artikel> getArrayList(String productnaam) {
+    public ArrayList<Artikel> getArrayList(String productnaam) {
         return aanbod.get(productnaam);
-    }
+    } //protected
 
     /**
      * Private methode om een Artikel van de stapel artikelen af te pakken.
@@ -83,5 +84,6 @@ public class KantineAanbod {
     public Artikel getArtikel(String productnaam) {
         return getArtikel(getArrayList(productnaam));
     }
+
     }
 

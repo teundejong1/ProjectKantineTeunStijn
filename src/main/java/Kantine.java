@@ -42,9 +42,13 @@ public class Kantine {
      * Deze Publieke methode handelt de rij voor de kassa af via de rekenAf methode.
      */
     public void verwerkRijVoorKassa() {
-        while (kassarij.erIsEenRij()) { // Checkt of er een rij is.
-            kassa.rekenAf(kassarij.eerstePersoonInRij()); //Reken af met de eerste persoon in de rij.
-             }
+        while (this.kassarij.erIsEenRij()) {
+            try {
+                this.kassa.rekenAf(kassarij.eerstePersoonInRij());
+            } catch (TeWeinigGeldException e) {
+                e.getMessage();
+            }
+        }
     }
     /**
      * Publieke Getter om het aanbod van de kantine op te halen.

@@ -35,4 +35,8 @@ public abstract class Betaalwijze {
             return "Pinpas";
         }
     }
+
+    public double getSaldo(){
+        return saldo;
+    }
 }

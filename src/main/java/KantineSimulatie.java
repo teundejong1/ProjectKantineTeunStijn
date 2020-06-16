@@ -1,5 +1,11 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
+import javax.persistence.Persistence;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+
 
 /**
  * class KantineSimulatie - Deze klasse is verantwoordelijk voor het simuleren van de kantine.
@@ -9,6 +15,9 @@ import java.util.Random;
  */
 public class KantineSimulatie {
 
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY =
+            Persistence.createEntityManagerFactory("KantineSimulatie");
+    private EntityManager manager;
     //Dagen
     public static final int DAGEN = 7;
     // aantal artikelen
@@ -17,13 +26,16 @@ public class KantineSimulatie {
     private static final String[] artikelnamen =
             new String[]{"Koffie", "Broodje pindakaas", "Broodje kaas", "Appelsap"}; // Maak de artikelen aan.
 
+
+
     // minimum en maximum aantal artikelen per soort
-    private static final int MIN_ARTIKELEN_PER_SOORT = 10;
-    private static final int MAX_ARTIKELEN_PER_SOORT = 20;
+    private static final int MIN_ARTIKELEN_PER_SOORT = 100;
+    private static final int MAX_ARTIKELEN_PER_SOORT = 200;
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
 
     private static final double[] artikelprijzen = new double[]{1.50, 2.10, 1.65, 1.65}; // Prijzen per artikel.
+
 
     // kantine
     private final Kantine kantine;
@@ -58,6 +70,7 @@ public class KantineSimulatie {
         random = new Random();
         int[] hoeveelheden =
                 getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
+
         kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden);
         kantine.setKantineAanbod(kantineaanbod);
     }
@@ -68,8 +81,8 @@ public class KantineSimulatie {
      * @param args de standaard main methode.
      */
     public static void main(String[] args) {
-        int dagen;
 
+        int dagen;
         if (args.length == 0) {
             dagen = DAGEN;
         } else {
@@ -77,6 +90,7 @@ public class KantineSimulatie {
         }
         KantineSimulatie kantineSimulatie = new KantineSimulatie();
         kantineSimulatie.simuleer(dagen);
+
     }
 
     /**
@@ -169,12 +183,16 @@ public class KantineSimulatie {
      * @param dagen het aantal dagen dat je de simulatie wilt runnen, type int.
      */
     public void simuleer(int dagen) {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+
+
 
         int[] verkochteAantalProducten = new int[dagen];
         double[] omzet = new double[dagen];
         // for lus voor dagen
         for (int i = 0; i < dagen; i++) {
-
+            //Kortings
+            genereerKortings();
             // bedenk hoeveel personen vandaag binnen lopen
             genereerKantineBezoekers();
             int aantalpersonen = aantalStudenten + aantalDocenten + aantalKantineMedewerkers;
@@ -220,7 +238,7 @@ public class KantineSimulatie {
 
             }
             kantine.verwerkRijVoorKassa(); //Hier maken wij een bonnetje, ter verduideliking van de resultaten.
-            System.out.println("#########################################");
+            System.out.println("#######################");
             System.out.println(" ");
             System.out.println("Dag " + (i + 1));
             System.out.println("Dagtotalen : ");
@@ -230,17 +248,15 @@ public class KantineSimulatie {
             System.out.println(aantalStudenten + " studenten");
             System.out.println(aantalDocenten + " docenten");
             System.out.println(aantalKantineMedewerkers + " kantine medewerkers");
-            System.out.println("Totale artikelen : " + kantine.getKassa().aantalArtikelen()); //Totale Artikelen
-            System.out.println("Afgerekende artikelen : " + kantine.getKassa().getAfgerekendeArtikelen()); // Afgerekende Artikelen
+            System.out.println("Totale artikelen : " + kantine.getKassa().aantalGepasseerdeArtikelen()); //Totale Artikelen
+            System.out.println("Afgerekende artikelen : " + kantine.getKassa().aantalAfgerekendeArtikelen()); // Afgerekende Artikelen
             System.out.println("Omzet: €" + rondAf(kantine.getKassa().hoeveelheidGeldInKassa())); //Omzet
             System.out.println(" ");
-            System.out.println("#########################################");
-            verkochteAantalProducten[i] = kantine.getKassa().aantalArtikelen();
+            System.out.println("#######################");
+            verkochteAantalProducten[i] = kantine.getKassa().aantalAfgerekendeArtikelen();
             omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
             kantine.getKassa().resetKassa(); //Reset Kassa.
-//            for (Persoon persoon : klanten) {
-//                System.out.println(persoon); //Check om te kijken wat voor type bezoekers er in de kantine zijn geweest.
-//            }
+
             resetKantineBezoekers(); //Reset kantinebezoekers.
 
         }
@@ -257,7 +273,8 @@ public class KantineSimulatie {
         System.out.println("Gemiddelde omzet: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldeOmzet(omzet)));
         System.out.println(printDagOmzet(omzet));
-
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
 
     }
 
@@ -277,5 +294,30 @@ public class KantineSimulatie {
             i++;
         }
         return dagOmzet.toString();
+
+    }
+
+    /**
+     * Deze Private methode genereert de artikelen met korting.
+     * Vervolgens wordt een nieuw kantineaanbod met de nieuwe arraylist gegenereerd.
+     */
+    private void genereerKortings(){
+        int random = getRandomValue(1, 2); //1,2 niet alles in de aanbieding.
+        //System.out.println("Zoveel artikelen kortings :"); //check
+        Artikel artikel;
+        for (int i = 0; i < random; i++) {
+            int getal = getRandomValue(0, artikelnamen.length - 1);
+            artikel = kantineaanbod.getArtikel(artikelnamen[getal]);
+            artikel.setKorting(artikel.getPrijs() * 0.2);
+            System.out.println(artikel.getNaam() + "  -  " + artikel.getKorting());
+            ArrayList<Artikel> artikelenKortings = new ArrayList<>();
+            for (int j = 0; j <= kantineaanbod.getArrayList(artikelnamen[getal]).size(); j++) {
+                artikelenKortings.add(artikel);
+
+            }
+            kantineaanbod.aanbod.put(artikelnamen[getal], artikelenKortings);
+            //System.out.println(count);
+        }
     }
 }
+

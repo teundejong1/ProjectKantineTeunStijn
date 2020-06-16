@@ -25,7 +25,7 @@ public class TeWeinigGeldException extends Throwable {
      * @param message, type String.
      */
     public TeWeinigGeldException(String message) { //String message TeWeinigGeldException. Deze wordt gebruikt.
-        JOptionPane.showMessageDialog(null, message, "Kassa error", JOptionPane.ERROR_MESSAGE); //De errormelding bij een niet geslaagde betaling.
+        //JOptionPane.showMessageDialog(null, message, "Kassa error", JOptionPane.ERROR_MESSAGE); //De errormelding bij een niet geslaagde betaling.
         System.out.println("Betaling niet gelukt");
     }
 }
