@@ -21,6 +21,7 @@ public abstract class Betaalwijze {
      * Publieke Methode om betaling af te handelen
      *
      * @param tebetalen het te betalen bedrag, type double.
+     *                
      */
     public abstract void betaal(double tebetalen) throws TeWeinigGeldException;
 
