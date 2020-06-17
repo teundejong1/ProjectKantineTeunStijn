@@ -1,6 +1,7 @@
 public class Administratie {
     /**
      * class Administratie  - Deze klasse is voor de administratie van de kantine.
+     *
      * @author Teun de Jong en Stijn Wolthuis.
      * @version 02/06/2020.
      */
@@ -11,6 +12,7 @@ public class Administratie {
 
     /**
      * Deze publieke methode berekent van de int array aantal de gemiddelde waarde
+     *
      * @param aantal de int array
      * @return het gemiddelde
      */
@@ -29,6 +31,7 @@ public class Administratie {
 
     /**
      * Deze publieke methode berekent van de double array omzet de gemiddelde waarde
+     *
      * @param omzet gemiddelde van de week
      * @return het gemiddelde
      */
@@ -46,6 +49,7 @@ public class Administratie {
 
     /**
      * Publieke methode om dagomzet uit te rekenen
+     *
      * @param omzet van de dagen
      * @return array (7 elementen) met dagomzetten
      */
@@ -53,7 +57,7 @@ public class Administratie {
 
         double[] temp = new double[DAYS_IN_WEEK];
 
-        for(int i = 0; i < DAYS_IN_WEEK; i++) {
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
 
             int j = 0;
             while (j < omzet.length) {

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
  * class KantineAanbod - Deze klasse houdt het aanbod van de kantine bij.
  *
@@ -8,14 +9,16 @@ import java.util.HashMap;
  */
 public class KantineAanbod {
     // interne opslag voorraad
-    private HashMap<String, ArrayList<Artikel>> aanbod;
+    public HashMap<String, ArrayList<Artikel>> aanbod; //protected
     private HashMap<String, Integer> startVoorraad;
     private HashMap<String, Double> prijzen;
 
+
     /**
      * Constructor voor de klasse KantineAanbod.
+     *
      * @param artikelnaam een lijst van artikelnamen
-     * @param prijs een double prijs
+     * @param prijs       een double prijs
      * @param hoeveelheid een lijst van prijzen
      */
     public KantineAanbod(String[] artikelnaam, double[] prijs, int[] hoeveelheid) {
@@ -32,8 +35,10 @@ public class KantineAanbod {
             aanbod.put(artikelnaam[i], artikelen);
         }
     }
+
     /**
      * Private Methode voor het aanvullen van de voorraad van de kantine.
+     *
      * @param productnaam String namen van de producten die worden aangevuld.
      */
     private void vulVoorraadAan(String productnaam) {
@@ -49,14 +54,16 @@ public class KantineAanbod {
 
     /**
      * Private methode om de lijst van artikelen te krijgen op basis van de naam van het artikel.
+     *
      * @return artikel, of als het artikel niet bestaat null.
      */
-    private ArrayList<Artikel> getArrayList(String productnaam) {
+    public ArrayList<Artikel> getArrayList(String productnaam) {
         return aanbod.get(productnaam);
-    }
+    } //protected
 
     /**
      * Private methode om een Artikel van de stapel artikelen af te pakken.
+     *
      * @param stapel stack met artikelen.
      * @return artikel of null.
      */
@@ -77,11 +84,13 @@ public class KantineAanbod {
 
     /**
      * Publieke methode om een artikel via naam van de stapel te pakken.
+     *
      * @param productnaam van artikel
      * @return artikel (of null)
      */
     public Artikel getArtikel(String productnaam) {
         return getArtikel(getArrayList(productnaam));
     }
-    }
+
+}
 

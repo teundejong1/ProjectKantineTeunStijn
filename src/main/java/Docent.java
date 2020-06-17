@@ -43,13 +43,16 @@ public class Docent extends Persoon implements KortingskaartHouder {
 
     /**
      * Publieke Setter voor afkorting van de docent.
+     *
      * @param afkorting van de docent.
      */
     public void setAfkorting(String afkorting) {
         this.afkorting = afkorting;
     }
+
     /**
      * Publieke Getter voor de afdeling van de docent.
+     *
      * @return afdeling van docent
      */
     public String getAfdeling() {
@@ -67,6 +70,7 @@ public class Docent extends Persoon implements KortingskaartHouder {
 
     /**
      * Deze methode geeft het kortingspercentage van de klasse docent terug.
+     *
      * @return 0.25
      */
     @Override
@@ -76,6 +80,7 @@ public class Docent extends Persoon implements KortingskaartHouder {
 
     /**
      * Deze methode checkt of er een maximum is.
+     *
      * @return een boolean true wanneer er een maximum is.
      */
     @Override
@@ -85,6 +90,7 @@ public class Docent extends Persoon implements KortingskaartHouder {
 
     /**
      * Deze methode geeft de maximale korting terug.
+     *
      * @return het maximum, 1.
      */
     @Override

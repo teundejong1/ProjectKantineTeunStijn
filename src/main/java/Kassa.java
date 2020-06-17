@@ -1,147 +1,176 @@
 import java.util.Iterator;
 
-/**
- * class Kassa - Deze klasse is verantwoordelijk voor de kassa.
- *
- * @author Teun de Jong en Stijn Wolthuis.
- * @version 19/05/2020.
- */
 public class Kassa {
-    private KassaRij kassaRij;
-    private double hoeveelheidKassa;
-    private int gepasseerdeArtikelen;
-    private int afgerekendeArtikelen;
-    private String naamBetaler;
 
+    private double totalBalance;
+    private int passedItems;
+    private KassaRij kassaRij;
+    private double bedragVanKlant;
+    private int artOpDienblad;
+    private Artikel volgendeArtikel;
+    private int totaalAfgerekendeArtikelen;
 
     /**
-     * Constructor voor de klasse Kassa.
+     * Constructor
      */
     public Kassa(KassaRij kassarij) {
+        this.totalBalance = 0;
+        this.passedItems = 0;
         this.kassaRij = kassarij;
-        resetKassa();
     }
 
     /**
-     * Vraag het aantal artikelen en de totaalprijs op. Tel deze gegevens op bij de controletotalen
-     * die voor de kassa worden bijgehouden. De implementatie wordt later vervangen door een echte
-     * betaling door de persoon.
-     * @param klant die moet afrekenen, type Dienblad.
+     * Publieke methode om af te rekenen met klanten
+     * Wordt ook een nette bon geprint.
+     * @param klant die moet afrekenen, type Dienblad
      */
-    public void rekenAf(Dienblad klant) {
-        int artOpDienblad = 0; //zet artikelen op het dienblad op 0.
-        double bedragVanKlant = 0; //bedrag van de klant op 0.
-        double kortings = 0; //korting op 0.
-        double subtotaal;
-        Iterator<Artikel> itr = klant.artikelIterator(); //Iterator voor de artikelen van de klant op het dienblad.
-        StringBuilder artikelNamen = new StringBuilder(); //Lege string voor de artikelen en prijs van de artikelen.
-        while (itr.hasNext()) { //Zo lang de iterator een volgende heeft
-            Artikel nextArtikel = itr.next(); // Werken we met dit artikel.
-            //System.out.println(rondAf(nextArtikel.getPrijs()));
-            artikelNamen.append(nextArtikel.getNaam()).append(": €").append(nextArtikel.getPrijs()).append("\n"); //Naam en prijs.
-            bedragVanKlant += nextArtikel.getPrijs(); //tel de prijs van de artikelen op bij het te betalen bedrag van de klant.
-            this.gepasseerdeArtikelen++;
-            artOpDienblad++; //Aantal artikelen en artikelen op dienblad +1.
 
+    public void rekenAf(Dienblad klant) throws TeWeinigGeldException {
+
+        bedragVanKlant = 0;
+        double kortingsbedrag = 0;
+        double subtotaal = 0;
+        artOpDienblad = 0;
+        double naKorting;
+
+
+        System.out.println("#######################");
+        System.out.println("Nieuwe transactie ");
+        System.out.println((klant.getKlant().toString()));
+        System.out.println((" "));
+        System.out.println((klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam()));
+        System.out.println("Manier van betalen: " + (klant.getKlant().getBetaalwijze().toString()));
+        System.out.println((" "));
+
+        Iterator<Artikel> itr = klant.artikelIterator();
+        while (itr.hasNext()) {
+            volgendeArtikel = itr.next();
+            if (volgendeArtikel.getKorting() > 0) {
+                kortingsbedrag += volgendeArtikel.getKorting();
+
+            } else if (volgendeArtikel.getKorting() == 0) {
+                bedragVanKlant += volgendeArtikel.getPrijs();
+            }
+            System.out.println((volgendeArtikel.getNaam() + " : " + volgendeArtikel.getPrijs()));
+
+            subtotaal += volgendeArtikel.getPrijs();
+
+            this.passedItems++;
+            artOpDienblad++;
         }
-        //Bonnetje aanmaken voor de klant.
-        System.out.println("------------------");
-        System.out.println("Nieuwe klant: \t" + klant.getKlant().toString()); //Type klant
-        subtotaal = rondAf(bedragVanKlant); //subtotaal
-        System.out.println("Aantal artikelen op dienblad: " + artOpDienblad); //aantal artikelen
-        System.out.println(artikelNamen); //naam + prijs van de artikelen
-        System.out.println("Subtotaal : €" + subtotaal); //subtotaal printen
-        System.out.println("Manier van betalen: " + klant.getKlant().getBetaalwijze().toString()); //Manier van betalen printen
-        try { //het volgende stuk code uitvoeren .
-            if (klant.getKlant() instanceof KortingskaartHouder) { //als de klant een kortingskaart heeft.
+        double saldoVoor = klant.getKlant().getBetaalwijze().getSaldo();
 
-                double kortingsBedrag = bedragVanKlant * ((KortingskaartHouder) klant.getKlant()).geefKortingsPercentage();
-                if (((KortingskaartHouder) klant.getKlant()).heeftMaximum()) { //Wanneer er een maximala korting is (docent).
-                    double maxKorting = (((KortingskaartHouder) klant.getKlant()).geefMaximum());
-                    if (kortingsBedrag > maxKorting) {//Wanneer het kortingsbedrag groter zou zijn dan de maximale korting is de korting maximale korting.
-                        kortings = maxKorting; //sla korting op.
-                        bedragVanKlant -= maxKorting; //Af te rekenen bedrag - korting.
-                    } else {//Wanneer de korting niet groter is dan de maximale korting.
-                        kortings = kortingsBedrag; //sla korting op.
-                        bedragVanKlant -= kortingsBedrag; //Af te rekenen bedrag - korting.
+        try {
+
+            System.out.println(("+"));
+            System.out.println((("Te betalen voor korting: €" + rondAf(subtotaal))));
+
+            // bereken de korting voor de klant mits zij KortingskaartHouder zijn
+            if (klant.getKlant() instanceof KortingskaartHouder) {
+                double korting = bedragVanKlant * ((KortingskaartHouder) klant.getKlant()).geefKortingsPercentage();
+
+                // docenten met max korting
+                if (((KortingskaartHouder) klant.getKlant()).heeftMaximum()) {
+                    double maxKorting = ((KortingskaartHouder) klant.getKlant()).geefMaximum();
+                    if (korting <= maxKorting) {
+                        bedragVanKlant -= korting;
+                        //korting = bedragVanKlant - korting;
+                    } else {
+                        bedragVanKlant -= maxKorting;
+                        korting = maxKorting;
                     }
-                } else { //Zonder maximale korting (KantineMedewerker).
-                    bedragVanKlant -= kortingsBedrag; //af te rekenen bedrag - korting.
-                    kortings = kortingsBedrag; //sla korting op.
+                    // kantinemedewerkers zonder max korting
+                } else {
+                    bedragVanKlant -= korting;
                 }
+
+                System.out.println("Kortingskaartkorting: €" + rondAf(korting));
+                System.out.println("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag));
+                System.out.println("Totale korting      : €" + rondAf(korting + kortingsbedrag));
+                System.out.println("-");
+                naKorting = subtotaal - (korting + kortingsbedrag);
+                System.out.println("Na korting: €" + rondAf(naKorting));
+            } else {
+                naKorting = subtotaal - kortingsbedrag;
+                System.out.println("Dagaanbiedingkorting: €" + rondAf(kortingsbedrag));
+                System.out.println(" ");
+                System.out.println("Na korting: €" + rondAf(naKorting));
             }
 
-            klant.getKlant().getBetaalwijze().betaal(bedragVanKlant); //betaling van de klant
-            this.hoeveelheidKassa += bedragVanKlant; //betaling optellen bij de kassa
-            String stringKorting = String.valueOf(rondAf(kortings)); // korting in een String zetten
-            if (stringKorting.equals("0.0")) { //wanneer er geen korting is, is de String "Geen korting".
-                stringKorting = "Geen korting";
-            } else {
-                stringKorting = "€" + stringKorting; //Anders is de String een euroteken + de korting.
-            }
-            System.out.println("Korting: " + stringKorting); //Print de Korting
-            System.out.println("Het te betalen bedrag: €" + rondAf(bedragVanKlant) + "\n"); //print het te betalen bedrag.
-            afgerekendeArtikelen += artOpDienblad; //Hou afgerekende artikelen bij.
-            System.out.println("Betaling geslaagd");
-        } catch (TeWeinigGeldException teWeinigGeldException) { //Bij een niet gelukte betaling
-            //naamBetaler = klant.getKlant().getVoornaam() + " - " + klant.getKlant().getAchternaam() + " "; //Sla de naam van de betaler op.
-            naamBetaler = klant.getKlant().getAchternaam() + ", " + klant.getKlant().getVoornaam() + " - ";
-            System.out.println(naamBetaler + "is het niet gelukt om te betalen"); //print de naam van de betaler + heeft niet betaald.
-            
-        } finally { // Voer dit stuk altijd uit.
+            // Het reken gedeelte van de kassa
+
+            klant.getKlant().getBetaalwijze().betaal(rondAf(naKorting));
+            this.totalBalance += bedragVanKlant;
+            totaalAfgerekendeArtikelen += artOpDienblad;
+
+            System.out.println("Aantal artikelen: " + artOpDienblad);
+            System.out.println(" ");
+            System.out.println("Saldo voor betaling: €" + rondAf(saldoVoor));
+            System.out.println("Saldo na betaling €" + rondAf(klant.getKlant().getBetaalwijze().getSaldo()));
+            System.out.println("Administratie: ");
+            System.out.println(" ");
+            System.out.println("Subtotaal Afgerekende Artikelen: " + totaalAfgerekendeArtikelen);
+            System.out.println("Subtotaal gepasseerde artikelen: " + passedItems);
+            System.out.println("Dagtotaal: €" + rondAf(totalBalance));
+
+        } catch (TeWeinigGeldException e) {
+            System.out.println(klant.getKlant().getVoornaam() + " " + klant.getKlant().getAchternaam() + " kon niet betalen.");
+
+        } finally {
+
+            System.out.println(" ");
             System.out.println("Einde transactie");
+            System.out.println("#######################");
+            System.out.println(" ");
+            System.out.println("---------------------------------");
+            System.out.println(" ");
+
         }
+
     }
 
-
     /**
-     * Publieke methode.
      * Geeft het aantal artikelen dat de kassa heeft gepasseerd, vanaf het moment dat de methode
      * resetWaarden is aangeroepen.
      *
-     * @return aantal artikelen, type int.
+     * @return aantal artikelen
      */
-    public int aantalArtikelen() {
-        return this.gepasseerdeArtikelen;
+    public int aantalGepasseerdeArtikelen() {
+        return this.passedItems;
+    }
+
+    public int aantalAfgerekendeArtikelen() {
+        return this.totaalAfgerekendeArtikelen;
     }
 
     /**
-     * Publieke methode.
-     * Geeft het totaalbedrag van alle artikelen die de kassa zijn gepasseerd, vanaf het moment dat
+     * Geeft het totaalbedrag van alle artikelen die de kass zijn gepasseerd, vanaf het moment dat
      * de methode resetKassa is aangeroepen.
      *
-     * @return hoeveelheid geld in de kassa, type double.
+     * @return hoeveelheid geld in de kassa
      */
 
     public double hoeveelheidGeldInKassa() {
-        return this.hoeveelheidKassa;
+        return this.totalBalance;
     }
 
     /**
-     * Publike getter van de afgerekende artikelen.
-     * @return de afgerekende artikelen, type int.
-     */
-    public int getAfgerekendeArtikelen() {
-        return afgerekendeArtikelen;
-    }
-
-    /**
-     * Publieke methode.
-     * Reset de waarden van het aantal gepasseerde en afgerekende artikelen én de totale hoeveelheid geld in de
-     * kassa naar 0.
+     * reset de waarden van het aantal gepasseerde artikelen en de totale hoeveelheid geld in de
+     * kassa.
      */
     public void resetKassa() {
-        this.hoeveelheidKassa = 0;
-        this.gepasseerdeArtikelen = 0;
-        this.afgerekendeArtikelen = 0;
+        this.totalBalance = 0;
+        this.passedItems = 0;
+        this.totaalAfgerekendeArtikelen = 0;
     }
 
     /**
-     * Private afrondmethode om de doubles beter weer te geven.
-     * @param afTeRonden type double
-     * @return het nieuwe, afgeronde bedrag.
+     * @param getal een double waarde
+     * @return afgeronde waarde.
      */
-    private double rondAf(double afTeRonden) {
-        return Math.round(afTeRonden * 100.0) / 100.0;
+    private double rondAf(double getal) {
+        return Math.round(getal * 100.0) / 100.0;
     }
+
+
 }

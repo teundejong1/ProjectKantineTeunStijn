@@ -1,5 +1,9 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.Random;
+
 
 /**
  * class KantineSimulatie - Deze klasse is verantwoordelijk voor het simuleren van de kantine.
@@ -11,29 +15,28 @@ public class KantineSimulatie {
 
     //Dagen
     public static final int DAGEN = 7;
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY =
+            Persistence.createEntityManagerFactory("KantineSimulatie");
     // aantal artikelen
     private static final int AANTAL_ARTIKELEN = 4;
     // artikelen
     private static final String[] artikelnamen =
             new String[]{"Koffie", "Broodje pindakaas", "Broodje kaas", "Appelsap"}; // Maak de artikelen aan.
-
     // minimum en maximum aantal artikelen per soort
-    private static final int MIN_ARTIKELEN_PER_SOORT = 10;
-    private static final int MAX_ARTIKELEN_PER_SOORT = 20;
+    private static final int MIN_ARTIKELEN_PER_SOORT = 100;
+    private static final int MAX_ARTIKELEN_PER_SOORT = 200;
     private static final int MIN_ARTIKELEN_PER_PERSOON = 1;
     private static final int MAX_ARTIKELEN_PER_PERSOON = 4;
-
     private static final double[] artikelprijzen = new double[]{1.50, 2.10, 1.65, 1.65}; // Prijzen per artikel.
-
+    private static final String[] voornamenM = new String[]{"George", "Paul", "John", "Ringo"};
+    private static final String[] voornamenV = new String[]{"Lady", "Alicia", "Katy", "Stevie"};
+    private static final String[] achternamen = new String[]{"Harrison", "Mc Cartney", "Lennon", "Knicks", "GaGa", "Keys", "Perry", "Starr"};
     // kantine
     private final Kantine kantine;
-
     // kantineaanbod
     private final KantineAanbod kantineaanbod;
-
     // random generator
     private final Random random;
-
     // Personen
     int MIN_PERSONEN_PER_DAG = 50;
     int MAX_PERSONEN_PER_DAG = 100;
@@ -42,11 +45,8 @@ public class KantineSimulatie {
     int aantalKantineMedewerkers = 0;
     int aantalRandomPersonen;
     char geslacht;
-    private static final String[] voornamenM =  new String []{"George", "Paul", "John", "Ringo"};
-    private static final String[] voornamenV =  new String []{"Lady", "Alicia", "Katy", "Stevie"};
-    private static final String[] achternamen =  new String []{"Harrison", "Mc Cartney", "Lennon", "Knicks", "GaGa", "Keys", "Perry", "Starr"};
+    private EntityManager manager;
     private String voornaam;
-    private String achternaam;
 
     // ArrayList klanten
     private ArrayList<Persoon> klanten = new ArrayList<>();
@@ -59,6 +59,7 @@ public class KantineSimulatie {
         random = new Random();
         int[] hoeveelheden =
                 getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
+
         kantineaanbod = new KantineAanbod(artikelnamen, artikelprijzen, hoeveelheden);
         kantine.setKantineAanbod(kantineaanbod);
     }
@@ -69,8 +70,8 @@ public class KantineSimulatie {
      * @param args de standaard main methode.
      */
     public static void main(String[] args) {
-        int dagen;
 
+        int dagen;
         if (args.length == 0) {
             dagen = DAGEN;
         } else {
@@ -78,6 +79,7 @@ public class KantineSimulatie {
         }
         KantineSimulatie kantineSimulatie = new KantineSimulatie();
         kantineSimulatie.simuleer(dagen);
+
     }
 
     /**
@@ -127,6 +129,7 @@ public class KantineSimulatie {
 
     /**
      * Deze private methode rond de getallen af, zodat de doubles goed worden weergegeven
+     *
      * @return de nieuwe, afgeronde waarde.
      */
     private double rondAf(double afTeRonden) {
@@ -170,12 +173,15 @@ public class KantineSimulatie {
      * @param dagen het aantal dagen dat je de simulatie wilt runnen, type int.
      */
     public void simuleer(int dagen) {
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+
 
         int[] verkochteAantalProducten = new int[dagen];
         double[] omzet = new double[dagen];
         // for lus voor dagen
         for (int i = 0; i < dagen; i++) {
-
+            //Kortings
+            genereerKortings();
             // bedenk hoeveel personen vandaag binnen lopen
             genereerKantineBezoekers();
             int aantalpersonen = aantalStudenten + aantalDocenten + aantalKantineMedewerkers;
@@ -185,20 +191,19 @@ public class KantineSimulatie {
                 int randomGeslacht = getRandomValue(0, 1);
                 if (randomGeslacht == 0) {
                     geslacht = 'M';
-                    voornaam = voornamenM[getRandomValue(0, voornamenM.length-1)];
+                    voornaam = voornamenM[getRandomValue(0, voornamenM.length - 1)];
+                } else {
+                    geslacht = 'V';
+                    voornaam = voornamenV[getRandomValue(0, voornamenM.length - 1)];
                 }
-                    else {
-                         geslacht = 'V';
-                         voornaam = voornamenV[getRandomValue(0, voornamenM.length-1)];
-                    }
 
                 if (j <= aantalKantineMedewerkers) {
 
-                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(1, 2, 1990), geslacht, 1, false)); // nieuwe random kantinemedewerker
+                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], new Datum(1, 2, 1990), geslacht, 1, false)); // nieuwe random kantinemedewerker
                 } else if (j <= aantalKantineMedewerkers + aantalDocenten) {
-                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(3, 4, 1989), geslacht, "Docent", "ICT")); //nieuwe random docent
+                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], new Datum(3, 4, 1989), geslacht, "Docent", "ICT")); //nieuwe random docent
                 } else if (j <= aantalDocenten + aantalStudenten + aantalKantineMedewerkers) {
-                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length-1)], new Datum(5, 6, 1988), geslacht, 12345, "ICT")); //nieuwe random student
+                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], new Datum(5, 6, 1988), geslacht, 12345, "ICT")); //nieuwe random student
                 }
             }
 
@@ -221,7 +226,7 @@ public class KantineSimulatie {
 
             }
             kantine.verwerkRijVoorKassa(); //Hier maken wij een bonnetje, ter verduideliking van de resultaten.
-            System.out.println("#########################################");
+            System.out.println("#######################");
             System.out.println(" ");
             System.out.println("Dag " + (i + 1));
             System.out.println("Dagtotalen : ");
@@ -231,17 +236,15 @@ public class KantineSimulatie {
             System.out.println(aantalStudenten + " studenten");
             System.out.println(aantalDocenten + " docenten");
             System.out.println(aantalKantineMedewerkers + " kantine medewerkers");
-            System.out.println("Totale artikelen : " + kantine.getKassa().aantalArtikelen()); //Totale Artikelen
-            System.out.println("Afgerekende artikelen : " + kantine.getKassa().getAfgerekendeArtikelen()); // Afgerekende Artikelen
+            System.out.println("Totale artikelen : " + kantine.getKassa().aantalGepasseerdeArtikelen()); //Totale Artikelen
+            System.out.println("Afgerekende artikelen : " + kantine.getKassa().aantalAfgerekendeArtikelen()); // Afgerekende Artikelen
             System.out.println("Omzet: €" + rondAf(kantine.getKassa().hoeveelheidGeldInKassa())); //Omzet
             System.out.println(" ");
-            System.out.println("#########################################");
-            verkochteAantalProducten[i] = kantine.getKassa().aantalArtikelen();
+            System.out.println("#######################");
+            verkochteAantalProducten[i] = kantine.getKassa().aantalAfgerekendeArtikelen();
             omzet[i] = kantine.getKassa().hoeveelheidGeldInKassa();
             kantine.getKassa().resetKassa(); //Reset Kassa.
-//            for (Persoon persoon : klanten) {
-//                System.out.println(persoon); //Check om te kijken wat voor type bezoekers er in de kantine zijn geweest.
-//            }
+
             resetKantineBezoekers(); //Reset kantinebezoekers.
 
         }
@@ -258,7 +261,8 @@ public class KantineSimulatie {
         System.out.println("Gemiddelde omzet: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldeOmzet(omzet)));
         System.out.println(printDagOmzet(omzet));
-
+        manager.close();
+        ENTITY_MANAGER_FACTORY.close();
 
     }
 
@@ -278,5 +282,30 @@ public class KantineSimulatie {
             i++;
         }
         return dagOmzet.toString();
+
+    }
+
+    /**
+     * Deze Private methode genereert de artikelen met korting.
+     * Vervolgens wordt een nieuw kantineaanbod met de nieuwe arraylist gegenereerd.
+     */
+    private void genereerKortings() {
+        int random = getRandomValue(1, 2); //1,2 niet alles in de aanbieding.
+        //System.out.println("Zoveel artikelen kortings :"); //check
+        Artikel artikel;
+        for (int i = 0; i < random; i++) {
+            int getal = getRandomValue(0, artikelnamen.length - 1);
+            artikel = kantineaanbod.getArtikel(artikelnamen[getal]);
+            artikel.setKorting(artikel.getPrijs() * 0.2);
+            System.out.println(artikel.getNaam() + "  -  " + artikel.getKorting());
+            ArrayList<Artikel> artikelenKortings = new ArrayList<>();
+            for (int j = 0; j <= kantineaanbod.getArrayList(artikelnamen[getal]).size(); j++) {
+                artikelenKortings.add(artikel);
+
+            }
+            kantineaanbod.aanbod.put(artikelnamen[getal], artikelenKortings);
+            //System.out.println(count);
+        }
     }
 }
+
