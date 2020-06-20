@@ -1,3 +1,5 @@
+import javax.persistence.EntityManager;
+
 /**
  * class Kantine  - Deze klasse is verantwoordelijk voor de kantine.
  *
@@ -9,13 +11,14 @@ public class Kantine {
     private Kassa kassa;
     private KassaRij kassarij;
     private KantineAanbod kantineAanbod;
+    private EntityManager manager;
 
     /**
      * Constructor voor de klasse Kantine.
      */
-    public Kantine() {
+    public Kantine(EntityManager entityManager) {
         kassarij = new KassaRij();
-        kassa = new Kassa(kassarij);
+        kassa = new Kassa(kassarij, entityManager);
     }
 
     /**

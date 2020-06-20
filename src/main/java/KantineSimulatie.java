@@ -1,7 +1,13 @@
+import org.hibernate.Session;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 
@@ -55,7 +61,8 @@ public class KantineSimulatie {
      * Constructor voor de klasse KantinesSimulatie.
      */
     public KantineSimulatie() {
-        kantine = new Kantine();
+        manager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        kantine = new Kantine(manager);
         random = new Random();
         int[] hoeveelheden =
                 getRandomArray(AANTAL_ARTIKELEN, MIN_ARTIKELEN_PER_SOORT, MAX_ARTIKELEN_PER_SOORT);
@@ -199,11 +206,11 @@ public class KantineSimulatie {
 
                 if (j <= aantalKantineMedewerkers) {
 
-                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], new Datum(1, 2, 1990), geslacht, 1, false)); // nieuwe random kantinemedewerker
+                    klanten.add(new KantineMedewerker(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], LocalDate.of(1999, 9, 9), geslacht, 1, false)); // nieuwe random kantinemedewerker
                 } else if (j <= aantalKantineMedewerkers + aantalDocenten) {
-                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], new Datum(3, 4, 1989), geslacht, "Docent", "ICT")); //nieuwe random docent
+                    klanten.add(new Docent(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], LocalDate.of(1989, 8, 8), geslacht, "Docent", "ICT")); //nieuwe random docent
                 } else if (j <= aantalDocenten + aantalStudenten + aantalKantineMedewerkers) {
-                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], new Datum(5, 6, 1988), geslacht, 12345, "ICT")); //nieuwe random student
+                    klanten.add(new Student(12345, voornaam, achternamen[getRandomValue(0, achternamen.length - 1)], LocalDate.of(1979, 7, 7), geslacht, 12345, "ICT")); //nieuwe random student
                 }
             }
 
@@ -236,7 +243,7 @@ public class KantineSimulatie {
             System.out.println(aantalStudenten + " studenten");
             System.out.println(aantalDocenten + " docenten");
             System.out.println(aantalKantineMedewerkers + " kantine medewerkers");
-            System.out.println("Totale artikelen : " + kantine.getKassa().aantalGepasseerdeArtikelen()); //Totale Artikelen
+            //System.out.println("Totale artikelen : " + kantine.getKassa().aantalGepasseerdeArtikelen()); //Totale Artikelen
             System.out.println("Afgerekende artikelen : " + kantine.getKassa().aantalAfgerekendeArtikelen()); // Afgerekende Artikelen
             System.out.println("Omzet: €" + rondAf(kantine.getKassa().hoeveelheidGeldInKassa())); //Omzet
             System.out.println(" ");
@@ -261,6 +268,13 @@ public class KantineSimulatie {
         System.out.println("Gemiddelde omzet: ");
         System.out.println(rondAf(Administratie.berekenGemiddeldeOmzet(omzet)));
         System.out.println(printDagOmzet(omzet));
+        System.out.println("Totale omzet, gevolgd door totale korting query: ");
+        totaleOmzetenKorting();
+        System.out.println("Gemiddelde omzet, gevolgd door gemiddelde korting query: ");
+        gemiddeldeOmzet();
+        System.out.println("Hoogste drie facturen: ");
+        System.out.println("ID, gevolgd door totale bedrag");
+        hoogsteDrieFacturen();
         manager.close();
         ENTITY_MANAGER_FACTORY.close();
 
@@ -307,5 +321,34 @@ public class KantineSimulatie {
             //System.out.println(count);
         }
     }
+
+    /**
+     * Toon totale omzet uit database
+     */
+    public void totaleOmzetenKorting(){
+        Query query = manager.createQuery("SELECT sum(totaal), sum(korting) FROM Factuur factuur");
+        List<Object[]> resultList = query.getResultList();
+        resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+    }
+    /**
+     * Toon gemiddelde omzet uit database
+     */
+    public void gemiddeldeOmzet(){
+        Query query = manager.createQuery("SELECT avg(totaal), avg(korting) FROM Factuur factuur");
+        List<Object[]> resultList = query.getResultList();
+        resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+    }
+
+    /**
+     * Toon totale omzet uit database
+     */
+    public void hoogsteDrieFacturen(){
+        Query query = manager.createQuery("SELECT id, totaal FROM Factuur factuur ORDER BY factuur.totaal DESC").setMaxResults(3);
+        List<Object[]> resultList = query.getResultList();
+
+        resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+
+    }
+
 }
 

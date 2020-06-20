@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * class Docent - Deze klasse is voor de klant Docent.
  *
@@ -19,7 +21,7 @@ public class Docent extends Persoon implements KortingskaartHouder {
      * @param afdeling      van de docent
      * @param afkorting     van de docent
      */
-    public Docent(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht, String afkorting, String afdeling) {
+    public Docent(int bsn, String voornaam, String achternaam, LocalDate geboortedatum, char geslacht, String afkorting, String afdeling) {
         super(bsn, voornaam, achternaam, geboortedatum, geslacht);
         this.afkorting = afkorting;
         this.afdeling = afdeling;

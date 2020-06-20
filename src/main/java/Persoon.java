@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,7 @@ public class Persoon {
     private int bsn;
     private String voornaam;
     private String achternaam;
-    private Datum geboortedatum;
+    private LocalDate geboortedatum;
     private char geslacht;
     private Betaalwijze betaalwijze;
 
@@ -24,7 +25,7 @@ public class Persoon {
      * @param geboortedatum van de klant.
      * @param geslacht      van de klant.
      */
-    public Persoon(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht) {
+    public Persoon(int bsn, String voornaam, String achternaam, LocalDate geboortedatum, char geslacht) {
         setBsn(bsn);
         setVoornaam(voornaam);
         setAchternaam(achternaam);
@@ -43,7 +44,7 @@ public class Persoon {
         bsn = 0;
         voornaam = "";
         achternaam = "";
-        geboortedatum = new Datum();
+        LocalDate Datum = LocalDate.of(2019, 5, 16);
         geslacht = 'o';
     }
 
@@ -161,11 +162,12 @@ public class Persoon {
      *
      * @return geboortedatum persoon, type Datum.
      */
-    public String getGeboortedatum() {
-        if (geboortedatum.getDatumAsString().equals("0-0-0")) {
-            return "Onbekend";
-        } else
-            return geboortedatum.getDatumAsString();
+    public LocalDate getGeboortedatum() {
+//        if (geboortedatum.getDatumAsString().equals("0-0-0")) {
+//            return "Onbekend";
+//        } else
+//            return geboortedatum.getDatumAsString();
+        return geboortedatum;
     }
 
     /**
@@ -173,7 +175,7 @@ public class Persoon {
      *
      * @param geboortedatum geboortedatum van persoon, type Datum.
      */
-    public void setGeboortedatum(Datum geboortedatum) {
+    public void setGeboortedatum(LocalDate geboortedatum) {
         this.geboortedatum = geboortedatum;
     }
 

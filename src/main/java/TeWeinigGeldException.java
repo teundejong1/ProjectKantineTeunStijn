@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  * class TeWeinigGeldException  - Deze klasse is verantwoordelijk voor de te weinig geld exception
  *

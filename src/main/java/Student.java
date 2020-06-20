@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * class Student - Deze klasse is voor de klant student.
  *
@@ -19,7 +21,7 @@ public class Student extends Persoon {
      * @param studentnummer  van de student
      * @param studierichting van de student.
      */
-    public Student(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht, int studentnummer, String studierichting) {
+    public Student(int bsn, String voornaam, String achternaam, LocalDate geboortedatum, char geslacht, int studentnummer, String studierichting) {
         super(bsn, voornaam, achternaam, geboortedatum, geslacht);
         this.studentnummer = studentnummer;
         this.studierichting = studierichting;

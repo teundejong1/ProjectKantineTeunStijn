@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * class KantineMedewerker - Deze klasse is voor de medewerkers in de kantine.
  *
@@ -19,7 +21,7 @@ public class KantineMedewerker extends Persoon implements KortingskaartHouder {
      * @param medewerkersnummer van de medewerker.
      * @param toestaanKasasa    is de medewerker bevoegd om de kassa te gebruiken.
      */
-    public KantineMedewerker(int bsn, String voornaam, String achternaam, Datum geboortedatum, char geslacht, int medewerkersnummer, boolean toestaanKasasa) {
+    public KantineMedewerker(int bsn, String voornaam, String achternaam, LocalDate geboortedatum, char geslacht, int medewerkersnummer, boolean toestaanKasasa) {
         super(bsn, voornaam, achternaam, geboortedatum, geslacht);
         this.medewerkersnummer = medewerkersnummer;
         this.toestaanKasasa = toestaanKasasa;
