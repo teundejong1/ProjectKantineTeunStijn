@@ -11,7 +11,7 @@
 //    @Column(name = "ID", unique = true, nullable = false)
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    private Long id;
-//c
+//
 //    @ManyToOne
 //    @JoinColumn(name = "Factuur_ID")
 //    private Factuur factuur;
