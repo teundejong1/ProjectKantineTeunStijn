@@ -47,10 +47,10 @@ public class Kantine {
     /**
      * Deze Publieke methode handelt de rij voor de kassa af via de rekenAf methode.
      */
-    public void verwerkRijVoorKassa() {
+    public void verwerkRijVoorKassa(int i) {
         while (this.kassarij.erIsEenRij()) {
             try {
-                this.kassa.rekenAf(kassarij.eerstePersoonInRij());
+                this.kassa.rekenAf(kassarij.eerstePersoonInRij(), i);
             } catch (TeWeinigGeldException e) {
                 e.getMessage();
             }

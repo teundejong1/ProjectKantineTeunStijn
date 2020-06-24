@@ -30,8 +30,9 @@ public class Kassa {
      * @param klant die moet afrekenen, type Dienblad
      */
 
-    public void rekenAf(Dienblad klant) throws TeWeinigGeldException {
-        Factuur factuur = new Factuur(klant, LocalDate.now());
+    public void rekenAf(Dienblad klant, int i) throws TeWeinigGeldException {
+
+        Factuur factuur = new Factuur(klant, LocalDate.now().plusDays(i));
         try {
             // Het reken gedeelte van de kassa
             klant.getKlant().getBetaalwijze().betaal(factuur.getTotaal());

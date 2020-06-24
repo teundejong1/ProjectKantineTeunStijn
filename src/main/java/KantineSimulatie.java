@@ -5,10 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 /**
@@ -232,7 +229,7 @@ public class KantineSimulatie {
 
 
             }
-            kantine.verwerkRijVoorKassa(); //Hier maken wij een bonnetje, ter verduideliking van de resultaten.
+            kantine.verwerkRijVoorKassa(i); //Hier maken wij een bonnetje, ter verduideliking van de resultaten.
             System.out.println("#######################");
             System.out.println(" ");
             System.out.println("Dag " + (i + 1));
@@ -275,6 +272,31 @@ public class KantineSimulatie {
         System.out.println("Hoogste drie facturen: ");
         System.out.println("ID, gevolgd door totale bedrag");
         hoogsteDrieFacturen();
+        System.out.println(" \n");
+        getSumOmzetEnSumKortingPerArtikel("Koffie");
+        getSumOmzetEnSumKortingPerArtikel("Broodje pindakaas");
+        getSumOmzetEnSumKortingPerArtikel("Broodje kaas");
+        getSumOmzetEnSumKortingPerArtikel("Appelsap");
+        System.out.println(" ");
+        ArrayList<Integer> hoogsteArtikelen = new ArrayList<Integer>();
+        hoogsteArtikelen.add(hoogsteDrieArtikelen("Koffie"));
+        hoogsteArtikelen.add(hoogsteDrieArtikelen("Broodje pindakaas"));
+        hoogsteArtikelen.add(hoogsteDrieArtikelen("Broodje kaas"));
+        hoogsteArtikelen.add(hoogsteDrieArtikelen("Appelsap"));
+        Collections.sort(hoogsteArtikelen);
+//        for(int teller: hoogsteArtikelen){
+//            System.out.println(teller);
+//        }
+        System.out.println("Het meest verkochte artikel " + vindNaam(hoogsteArtikelen, 3) + " is " + hoogsteArtikelen.get(3) + " keer verkocht.");
+        System.out.println("Vervolgens is " + vindNaam(hoogsteArtikelen, 2) + " "+ hoogsteArtikelen.get(2) + " keer verkocht");
+        System.out.println("Als derde is " + vindNaam(hoogsteArtikelen, 1) + " " + hoogsteArtikelen.get(1) + " keer verkocht");
+        System.out.println(" ");
+        System.out.println("Hoogste drie artikelen: ");
+        for (Object[] artikels : drieArtikelenHoogsteOmzet()){
+            System.out.println(Arrays.toString(artikels));
+        }
+        System.out.println(" ");
+        totaleEnToegepasteKortingPerDag(DAGEN);
         manager.close();
         ENTITY_MANAGER_FACTORY.close();
 
@@ -325,15 +347,16 @@ public class KantineSimulatie {
     /**
      * Toon totale omzet uit database
      */
-    public void totaleOmzetenKorting(){
+    public void totaleOmzetenKorting() {
         Query query = manager.createQuery("SELECT sum(totaal), sum(korting) FROM Factuur factuur");
         List<Object[]> resultList = query.getResultList();
         resultList.forEach(r -> System.out.println(Arrays.toString(r)));
     }
+
     /**
      * Toon gemiddelde omzet uit database
      */
-    public void gemiddeldeOmzet(){
+    public void gemiddeldeOmzet() {
         Query query = manager.createQuery("SELECT avg(totaal), avg(korting) FROM Factuur factuur");
         List<Object[]> resultList = query.getResultList();
         resultList.forEach(r -> System.out.println(Arrays.toString(r)));
@@ -342,13 +365,88 @@ public class KantineSimulatie {
     /**
      * Toon totale omzet uit database
      */
-    public void hoogsteDrieFacturen(){
+    public void hoogsteDrieFacturen() {
         Query query = manager.createQuery("SELECT id, totaal FROM Factuur factuur ORDER BY factuur.totaal DESC").setMaxResults(3);
         List<Object[]> resultList = query.getResultList();
 
         resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+    }
+    /**
+     * Toon omzet en korting per atikel uit de database
+     */
+    public void getSumOmzetEnSumKortingPerArtikel(String artikel) {
+        Query query = manager.createQuery("SELECT id FROM FactuurRegel where naam = '"+ artikel + "' and korting > 0");
+        List<FactuurRegel> resultList = query.getResultList();
+        double korting = resultList.size() * (kantineaanbod.getArtikel(artikel).getPrijs()  * 0.2);
+        System.out.println("Korting op " + artikel + ": €" + korting);
+
+        query = manager.createQuery("SELECT id FROM FactuurRegel where naam = '"+ artikel + "'");
+        resultList = query.getResultList();
+        System.out.println("Totaal verdiend met " + artikel + ": €" + resultList.size() * kantineaanbod.getArtikel(artikel).getPrijs());
+
+    }
+    /**
+     * Toon omzet en korting per artikel, per dag
+     */
+    public void totaleEnToegepasteKortingPerDag(int dagen){
+        for (int i = 0; i < dagen; i++) {
+            System.out.println("Dag: " + LocalDate.now().plusDays(i));
+            System.out.println("Artikelnaam, Totale omzet, Totale korting");
+            Query query = manager
+                    .createQuery("SELECT fr.artikel.naam, sum(fr.artikel.prijs), sum(fr.artikel.korting) FROM FactuurRegel fr JOIN fr.factuur f WHERE f.datum = '"+ LocalDate.now().plusDays(i)+ "'GROUP BY fr.artikel.naam ");
+            query.setMaxResults(4);
+            List<Object[]> resultList = query.getResultList();
+            resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+
+        }
+    }
+
+    /**
+     * Toon de count van een artikel
+     * @param artikel, type String
+     */
+    public int hoogsteDrieArtikelen(String artikel) {
+        Query query = manager.createQuery("SELECT new list (count(naam)) FROM FactuurRegel where naam = '"+ artikel +"'");
+        Object resultList = query.getSingleResult();
+        String count = resultList.toString();
+        count = count.replace("[", "");
+        count = count.replace("]", "");
+        int countArtikel = Integer.parseInt(count);
+        return countArtikel;
+    }
+
+    /**
+     * Vind de naam die bij het artikel hoort
+     * @param hoogsteArtikelen, i, Arraylist <Integer>
+     *
+     */
+    public String vindNaam(ArrayList<Integer> hoogsteArtikelen, int i){
+        String naam = "";
+        if (hoogsteDrieArtikelen("Koffie") == hoogsteArtikelen.get(i)){
+            naam = "Koffie";
+        }
+        else if (hoogsteDrieArtikelen("Broodje pindakaas") == hoogsteArtikelen.get(i)){
+            naam = "Broodje pindakaas";
+        }
+        else if (hoogsteDrieArtikelen("Broodje kaas") == hoogsteArtikelen.get(i)){
+            naam = "Broodje kaas";
+        }
+        else if (hoogsteDrieArtikelen("Appelsap") == hoogsteArtikelen.get(i)){
+            naam = "Appelsap";
+        }
+        return naam;
 
     }
 
+    /**
+     * Vind de artikelen met de hoogste omzet
+     * @return de artikelen met de hoogste omzet
+     */
+    public List<Object[]> drieArtikelenHoogsteOmzet() {
+        Query query = manager
+                .createQuery("SELECT artikel.naam, SUM(artikel.prijs - artikel.korting) FROM FactuurRegel GROUP BY artikel.naam ORDER BY SUM(artikel.prijs - artikel.korting) DESC");
+        query.setMaxResults(3);
+                return query.getResultList();
+    }
 }
 

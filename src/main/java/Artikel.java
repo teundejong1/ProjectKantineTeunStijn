@@ -1,10 +1,13 @@
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+
 /**
  * class Artikel - In deze klasse staan alle artikelen in opgeslagen.
  *
  * @author Teun de Jong en Stijn Wolthuis.
  * @version 19/05/2020.
  */
-
+@Embeddable
 public class Artikel {
     private String naam;
     private double prijs;

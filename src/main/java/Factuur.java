@@ -6,23 +6,32 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table (name = "FACTUUR")
 public class Factuur implements Serializable {
     @Id
     @Column(name = "ID", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "DATUM")
     private LocalDate datum;
+
     @Column(name = "SUBTOTAAL")
     private double subtotaal;
+
     @Column(name = "KORTING")
     private double korting;
+
     @Column(name = "TOTAAL")
     private double totaal;
+
     @Column(name = "AANTAL_ARTIKELEN")
     private int artOpDienblad;
-//    @OneToMany(mappedBy = "factuur")
-//    ArrayList<FactuurRegel> regels;
+
+    @Column(name = "FactuurRegel")
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<FactuurRegel> regels = new ArrayList();
 
 
     public Factuur() {
@@ -63,9 +72,13 @@ public class Factuur implements Serializable {
                      bedragVanKlant += volgendeArtikel.getPrijs();
                  }
 
+                 FactuurRegel factuurregel = new FactuurRegel(this, volgendeArtikel);
+                 regels.add(factuurregel);
                  subtotaal += volgendeArtikel.getPrijs();
 
                  artOpDienblad++;
+
+
              }
 
                  // bereken de korting voor de klant mits zij KortingskaartHouder zijn
@@ -127,6 +140,7 @@ public int getPassedItems()
              factuur += klant.getKlant().getAchternaam() + ", " + klant.getKlant().getVoornaam() + "\n";
              factuur += "Manier van betalen : " + klant.getKlant().getBetaalwijze().toString()+ "\n";
              factuur += "Totale aantal artikelen " + artOpDienblad + "\n";
+             factuur += toStringFactuurRegel();
              factuur += "Totaal bedrag: " + rondAf(subtotaal) + "\n";
              factuur += "Totale korting: " + rondAf(getKorting()) + "\n";
              factuur += "Bedrag - korting: €" + rondAf(getTotaal()) + "\n";
@@ -138,5 +152,13 @@ public int getPassedItems()
 
     private double rondAf(double getal) {
         return Math.round(getal * 100.0) / 100.0;
+    }
+
+    public String toStringFactuurRegel(){
+             String FactuurRegel = "";
+             for (int i = 0; i < regels.size() -1; i++){
+                 FactuurRegel += regels.get(i).toString() + "\n";
+             }
+             return FactuurRegel;
     }
  }
